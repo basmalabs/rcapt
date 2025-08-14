@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rehabilitation Care Associates (RCAPT) Website
 
-## Getting Started
+A modern, responsive business frontend for a medical facility built with [Next.js](https://nextjs.org) and TypeScript. This application provides patients and visitors with essential information and services offered by the medical facility.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This is a professional healthcare facility website designed to provide patients with easy access to medical services, facility information, and appointment scheduling. The application features a clean, user-friendly interface optimized for both desktop and mobile devices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **About**: Comprehensive information about the medical facility, staff, and mission
+- **Services**: Detailed overview of medical services offered by the facility
+- **Appointment**: Online appointment booking system for patients
+- **Contact**: Contact information, location details, and facility hours
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tools Used
 
-## Learn More
+- **[Next.js](https://nextjs.org)** - React framework for production-grade applications
+- **[TypeScript](https://www.typescriptlang.org)** - Type-safe JavaScript development
+- **[MongoDB](https://www.mongodb.com)** - NoSQL database for data storage
+- **[Material-UI](https://mui.com)** - React component library for modern UI design
+- **[Tailwind CSS](https://tailwindcss.com)** - Utility-first CSS framework
+- **[Vercel](https://vercel.com)** - Deployment and hosting platform
 
-To learn more about Next.js, take a look at the following resources:
+## Developer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project was developed by [Basma Labs](https://github.com/basmalabs) - a software development company specializing in developing modern web application solutions to meet business needs.
