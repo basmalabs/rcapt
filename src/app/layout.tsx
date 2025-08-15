@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import { TITLE_NAME } from "@/utils/constants";
 import MainLayout from "@/components/MainLayout";
 
+const font = Roboto({
+  subsets: ["latin"],
+});
 
 export default function RootLayout({
   children,
@@ -10,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={ font.className }>
       <body>
           <MainLayout>{children}</MainLayout>
       </body>
