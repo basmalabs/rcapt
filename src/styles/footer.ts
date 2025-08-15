@@ -21,6 +21,11 @@ export const sectionStyles = {
   ),
 }
 
+export const sectionsArrange = {
+  m3w2: "order-3 md:order-2 mt-4 md:mt-0",
+  m2w3: "order-2 md:order-3 mt-4 md:mt-0",
+}
+
 export const contactStyles = {
   div: clsx( "flex flex-row gap-2" ),
   icon: clsx( "grow-0" ),
@@ -77,4 +82,14 @@ export const currentStatusStyles = {
   ),
   label: clsx( "basis-sm text-sm font-normal" ),
   value: clsx( "basis-xl justify-self-center text-3xl text-center uppercase font-bold" ),
+}
+
+export const callToActionStyle = {
+  div: clsx( "flex flex-col space-y-2" ),
+  button: clsx( "w-full" ),
+  header: clsx(
+    "text-normal font-semibold",
+    "text-green-900 dark:text-green-100",
+  ),
+  link: clsx( "hover:underline text-sm cursor-pointer" ),
 }

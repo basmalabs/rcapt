@@ -1,7 +1,11 @@
 "use client";
 
+import clsx from "clsx";
 import { OPENING_HOURS, TIME_ZONE } from "@/utils/constants";
-import { sectionStyles, tableStyles, currentStatusStyles } from "@/styles/footer";
+import {
+  sectionStyles, tableStyles,
+  currentStatusStyles, sectionsArrange
+} from "@/styles/footer";
 import { useState, useEffect } from "react";
 
 // Get current time in minutes at the company timezone
@@ -69,7 +73,7 @@ export default function OperatingHours() {
   );
 
   return (
-    <section className={ sectionStyles.container }>
+    <section className={ clsx(sectionStyles.container, sectionsArrange.m3w2) }>
       <h2 className={ sectionStyles.header }>Hours of Operation</h2>
 
       <div className={ currentStatusStyles.wrapper( isCurrentlyOpen ) }>
