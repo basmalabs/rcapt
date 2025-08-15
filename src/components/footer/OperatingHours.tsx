@@ -2,11 +2,30 @@
 
 import { OPENING_HOURS } from "@/utils/constants";
 import { sectionStyles, tableStyles, currentStatusStyles } from "@/styles/footer";
+import { useState, useEffect } from "react";
 
 export default function OperatingHours() {
-  const now = new Date();
-  const currentDay = now.toLocaleString( "default", { weekday: "long" } );
-  const currentTimeMinutes = now.getHours() * 60 + now.getMinutes();
+  // Get current time in minutes
+  const [ currentTimeMinutes, setCurrentTimeMinutes ] = useState( () => {
+    const now = new Date();
+    return now.getHours() * 60 + now.getMinutes();
+  } );
+
+  // Get current day
+  const [ currentDay, setCurrentDay ] = useState( () => {
+    return new Date().toLocaleString( "default", { weekday: "long" } );
+  } );
+
+  // Update current time and day every 30 seconds
+  useEffect( () => {
+    const interval = setInterval( () => {
+      const now = new Date();
+      setCurrentTimeMinutes( now.getHours() * 60 + now.getMinutes() );
+      setCurrentDay( now.toLocaleString( "default", { weekday: "long" } ) );
+    }, 30_000 ); // every 30 seconds
+
+    return () => clearInterval( interval );
+  }, [] );
 
   // Convert "HH:MM AM/PM" to total minutes, null if Closed
   const timeToMinutes = ( timeStr: string ) => {
