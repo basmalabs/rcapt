@@ -12,9 +12,11 @@ export default function OperatingHours() {
   const timeToMinutes = ( timeStr: string ) => {
     if ( timeStr.toLowerCase() === "closed" ) return null;
     const [ time, modifier ] = timeStr.split( " " );
-    let [ hours, minutes ] = time.split( ":" ).map( Number );
+    const [ h, min ] = time.split( ":" ).map( Number );
+    let hours = h;
     if ( modifier === "PM" && hours !== 12 ) hours += 12;
     if ( modifier === "AM" && hours === 12 ) hours = 0;
+    const minutes = min || 0;
     return hours * 60 + minutes;
   };
 
