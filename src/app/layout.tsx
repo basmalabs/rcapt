@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { TITLE_NAME } from "@/utils/constants";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
+import clsx from "clsx";
 
 
 export default function RootLayout({
@@ -17,7 +18,12 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Header />
-          <main className="min-h-[80vh] bg-white dark:bg-gray-900">
+          <main className={ clsx(
+            "min-h-[80vh] ",
+            "pt-[140px] md:pt-[100px]",
+            "text-gray-900 dark:text-white",
+            "bg-white dark:bg-gray-900",
+          ) }>
             { children }
             <ThemeSwitcher />
           </main>
