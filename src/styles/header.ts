@@ -27,7 +27,7 @@ export const navStyles = {
     "flex flex-row flex-wrap p-2 md:p-4 w-full space-x-4 justify-center",
   ),
   link: ( href: string, pathname: string ) => clsx(
-    "block p-2 rounded-md text-md",
+    "block p-2 md:p-4 rounded-md text-base font-bold",
     pathname === href
       ? "text-white bg-green-400 dark:bg-green-600 rounded-xl shadow-md z-10"
       : "text-gray-700 dark:text-white hover:text-green-600 dark:hover:text-green-400",

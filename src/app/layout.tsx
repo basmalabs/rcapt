@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ThemeProvider from "@/components/ThemeProvider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { TITLE_NAME } from "@/utils/constants";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
-import clsx from "clsx";
+import MainLayout from "@/components/MainLayout";
 
 
 export default function RootLayout({
@@ -16,19 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Header />
-          <main className={ clsx(
-            "min-h-[80vh] ",
-            "pt-[140px] md:pt-[100px]",
-            "text-gray-900 dark:text-white",
-            "bg-white dark:bg-gray-900",
-          ) }>
-            { children }
-            <ThemeSwitcher />
-          </main>
-          <Footer />
-        </ThemeProvider>
+          <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

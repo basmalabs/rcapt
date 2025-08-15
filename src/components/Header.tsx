@@ -32,9 +32,7 @@ function Header() {
   }, [] );
 
   return (
-    // <header className={ clsx( styles.header, styles.headerAtTop ) }>
     <header className={clsx(headerStyles.header, isScrolled ? headerStyles.headerNotAtTop : headerStyles.headerAtTop)}>
-      {/* <div className={ styles.div }> */}
       <div className={ isMobile && isScrolled ? headerStyles.divRemoved : headerStyles.div }>
         <Link href="/">
           <Image
