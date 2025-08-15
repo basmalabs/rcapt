@@ -1,0 +1,14 @@
+"use client";
+
+import React from "react";
+import { ThemeProvider} from "next-themes";
+import type { ThemeProviderProps } from "next-themes";
+
+
+export default function Provider( { children, ...props }: ThemeProviderProps ) {
+  return (
+    <ThemeProvider { ...props }>
+      { children }
+    </ThemeProvider>
+  );
+}
