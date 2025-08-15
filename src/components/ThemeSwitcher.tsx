@@ -10,8 +10,8 @@ const styles = {
     "flex items-center justify-center",
     "fixed w-16 h-16 bottom-8 right-4 shadow-lg",
     "rounded-full",
-    "bg-green-400 dark:bg-green-600",
-    "hover:bg-green-500 dark:hover:bg-green-700",
+    "bg-green-700 dark:bg-green-400",
+    "hover:bg-green-600 dark:hover:bg-green-300",
     "transition-colors",
     "z-50"
   ),
