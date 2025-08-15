@@ -18,12 +18,17 @@ export const modalStyles = {
     "fixed inset-0 z-50",
     "flex items-center justify-center",
     "bg-black/50 dark:bg-white/50 px-4",
+    "opacity-0 transition-opacity",
+    "delay-150 duration-500 ease-in",
   ),
+  bg_transition: (isOpen: boolean) =>
+    clsx(
+      isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+    ),
   container: clsx(
-    "p-6 rounded-lg shadow-lg w-96",
+    "p-4 md:p-6 rounded-lg shadow-lg w-96",
     "bg-white dark:bg-gray-800",
-    "w-full max-w-[85vw] max-h-[75vh] overflow-y-auto",
-    "transform transition-all"
+    "w-full max-w-[85vw] lg:max-w-[70vw] max-h-[75vh] md:max-h-[85vh] overflow-y-auto",
   ),
 };
 

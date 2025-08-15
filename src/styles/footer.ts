@@ -9,7 +9,7 @@ export const containerStyles = {
     ),
     container: clsx(
       "flex flex-col md:flex-row items-top justify-center",
-      "py-2 space-y-8 md:space-x-8",
+      "py-2 space-y-8 md:space-x-8 lg:space-x-20 md:space-y-0",
     ),
 }
 
