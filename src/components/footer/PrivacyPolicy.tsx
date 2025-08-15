@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
         <Link href="https://www.rcapt.com/" title="https://www.rcapt.com/" className={modalArticleStyles.link} target="_blank" rel="noopener noreferrer">
           https://www.rcapt.com/
         </Link>
-        { " " }(the <strong>"Site"</strong>).
+        { " " }(the <strong>&ldquo;Site&rdquo;</strong>).
       </p>
 
       <section className={modalArticleStyles.section}>
@@ -23,21 +23,21 @@ export default function PrivacyPolicy() {
           Personal Information We Collect
         </h2>
         <p>
-          When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device. Additionally, as you browse the Site, we collect information about the individual web pages or products that you view, what websites or search terms referred you to the Site, and information about how you interact with the Site. We refer to this automatically-collected information as <strong>"Device Information"</strong>.
+          When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device. Additionally, as you browse the Site, we collect information about the individual web pages or products that you view, what websites or search terms referred you to the Site, and information about how you interact with the Site. We refer to this automatically-collected information as <strong>&ldquo;Device Information&rdquo;</strong>.
         </p>
         <p>We collect Device Information using the following technologies:</p>
         <ul className={modalArticleStyles.list}>
           <li>
-            <strong>"Cookies"</strong> are data files that are placed on your device or computer and often include an anonymous unique identifier. For more information about cookies, and how to disable cookies, visit <Link href="http://www.allaboutcookies.org" title="http://www.allaboutcookies.org" className={modalArticleStyles.link} target="_blank" rel="noopener noreferrer">allaboutcookies.org</Link>.
+            <strong>&ldquo;Cookies&rdquo;</strong> are data files that are placed on your device or computer and often include an anonymous unique identifier. For more information about cookies, and how to disable cookies, visit <Link href="http://www.allaboutcookies.org" title="http://www.allaboutcookies.org" className={modalArticleStyles.link} target="_blank" rel="noopener noreferrer">allaboutcookies.org</Link>.
           </li>
           <li>
-            <strong>"Log files"</strong> track actions occurring on the Site, and collect data including your IP address, browser type, Internet service provider, referring/exit pages, and date/time stamps.
+            <strong>&ldquo;Log files&rdquo;</strong> track actions occurring on the Site, and collect data including your IP address, browser type, Internet service provider, referring/exit pages, and date/time stamps.
           </li>
           <li>
-            <strong>"Web beacons", "tags", and "pixels"</strong> are electronic files used to record information about how you browse the Site.
+            <strong>&ldquo;Web beacons&rdquo;, &ldquo;tags&rdquo;, and &ldquo;pixels&rdquo;</strong> are electronic files used to record information about how you browse the Site.
           </li>
         </ul>
-        <p>When we talk about <strong>"Personal Information"</strong> in this Privacy Policy, we are talking about Device Information.</p>
+        <p>When we talk about <strong>&ldquo;Personal Information&rdquo;</strong> in this Privacy Policy, we are talking about Device Information.</p>
       </section>
 
       <section className={modalArticleStyles.section}>
@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
             title="http://www.networkadvertising.org/understanding-online-advertising/how-does-it-work"
             className={ modalArticleStyles.link } target="_blank" rel="noopener noreferrer"
           >
-            the Network Advertising Initiative's (<strong>"NAI"</strong>) educational page
+            the Network Advertising Initiative&rsquo;s (<strong>&ldquo;NAI&rdquo;</strong>) educational page
           </Link>
           .
         </p>
@@ -99,7 +99,7 @@ export default function PrivacyPolicy() {
         </ul>
         <p>
           Additionally, you can opt out of some of these services by visiting{" "}
-          <Link href="http://optout.aboutads.info/" title="http://optout.aboutads.info/" className={ modalArticleStyles.link } target="_blank" rel="noopener noreferrer">the Digital Advertising Alliance's opt-out portal</Link>.
+          <Link href="http://optout.aboutads.info/" title="http://optout.aboutads.info/" className={ modalArticleStyles.link } target="_blank" rel="noopener noreferrer">the Digital Advertising Alliance&rsquo;s opt-out portal</Link>.
         </p>
       </section>
 
