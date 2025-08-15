@@ -1,25 +1,12 @@
-import clsx from "clsx";
-import PoweredBy from "@/components/footers/PoweredBy";
-import Contact from "@/components/footers/Contact";
-import OperatingHours from "@/components/footers/OperatingHours";
-
-const styles = {
-  footer: clsx(
-    "flex flex-col items-center justify-center",
-    "px-4 py-4 w-full min-h-[10vh]",
-    "bg-green-100/30 text-gray-900",
-    "dark:bg-green-900/30 dark:text-white"
-  ),
-  container: clsx(
-    "flex flex-col md:flex-row items-top justify-center",
-    "py-2 space-y-8 md:space-x-8",
-  ),
-}
+import PoweredBy from "@/components/footer/PoweredBy";
+import Contact from "@/components/footer/Contact";
+import OperatingHours from "@/components/footer/OperatingHours";
+import { containerStyles } from "@/styles/footer";
 
 function Footer() {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
+    <footer className={ containerStyles.footer}>
+      <div className={containerStyles.container}>
         <Contact />
         <OperatingHours />
       </div>

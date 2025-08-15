@@ -1,4 +1,5 @@
 export const TITLE_NAME = "Physical Therapy Merrillville, IN";
+export const HEADER_LOGO_SRC = "https://res.cloudinary.com/farooqdotdev/image/upload/v1755189113/rcapt/logo.png";
 export const BASMA_LABS_URL = "https://basma.labs";
 export const URL = {
   facebook: "https://www.facebook.com/p/RCA-Physical-Therapy-Inc-100063647436229/",
