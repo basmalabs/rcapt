@@ -14,3 +14,4 @@ export const OPENING_HOURS = [
   [ "Saturday", "Closed", "Closed" ],
   ["Sunday", "Closed", "Closed"]
 ];
+export const TIME_ZONE = "America/Indiana/Indianapolis";
