@@ -17,7 +17,7 @@ export const modalStyles = {
   bg: clsx(
     "fixed inset-0 z-50",
     "flex items-center justify-center",
-    "bg-black/50 dark:bg-white/50 px-4",
+    "bg-black/20 dark:bg-white/20 px-4",
     "opacity-0 transition-opacity",
     "delay-150 duration-500 ease-in",
   ),
@@ -26,10 +26,17 @@ export const modalStyles = {
       isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
     ),
   container: clsx(
+    "relative",
     "p-4 md:p-6 rounded-lg shadow-lg w-96",
     "bg-white dark:bg-gray-800",
-    "w-full max-w-[85vw] lg:max-w-[70vw] max-h-[75vh] md:max-h-[85vh] overflow-y-auto",
+    "w-full max-w-[85vw] lg:max-w-[70vw]",
   ),
+  buttonDiv: clsx( "flex justify-end bg-inherit z-10" ),
+  childrenDiv: clsx(
+    "overflow-y-auto scrollbar-hidden",
+    "max-h-[75vh] md:max-h-[85vh]",
+  ),
+  closeButton: clsx( "absolute top-3 right-3 px-2 text-6xl" ),
 };
 
 export const modalArticleStyles = {

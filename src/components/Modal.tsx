@@ -36,7 +36,14 @@ export default function Modal( { isOpen, onClose, children }: ModalProps ) {
         className={ modalStyles.container }
         onClick={ ( e ) => e.stopPropagation() } // prevent closing when clicking inside
       >
-        { children }
+        <div className={ modalStyles.buttonDiv }>
+          <button className={ modalStyles.closeButton } onClick={ onClose }>
+            &times;
+          </button>
+        </div>
+        <div className={ modalStyles.childrenDiv }>
+          { children }
+        </div>
       </div>
     </div>
   );
