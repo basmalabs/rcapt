@@ -5,31 +5,11 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HEADER_LOGO_SRC } from '@/utils/constants';
-import { useState, useEffect } from 'react';
-import { headerStyles} from '@/styles/header';
+import { headerStyles } from '@/styles/header';
+import { useUIStore } from '@/store/useUIStore';
 
 function Header() {
-  const [ isMobile, setIsMobile ] = useState( false );
-  const [ isScrolled, setIsScrolled ] = useState( false );
-
-  useEffect( () => {
-    const handleResize = () => setIsMobile( window.innerWidth < 768 );
-    const handleScroll = () => setIsScrolled( window.scrollY > 20 );
-
-    // Checking initial state
-    handleResize();
-    handleScroll();
-
-    // Adding event listeners
-    window.addEventListener( "resize", handleResize );
-    window.addEventListener( "scroll", handleScroll );
-
-    // Cleanup
-    return () => {
-      window.removeEventListener( "resize", handleResize );
-      window.removeEventListener( "scroll", handleScroll );
-    };
-  }, [] );
+  const { isMobile, isScrolled } = useUIStore();
 
   return (
     <header className={clsx(headerStyles.header, isScrolled ? headerStyles.headerNotAtTop : headerStyles.headerAtTop)}>
