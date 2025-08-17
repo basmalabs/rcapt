@@ -28,8 +28,9 @@ export const navStyles = {
   ),
   link: ( href: string, pathname: string ) => clsx(
     "block p-2 md:p-4 text-base",
+    "hover:bg-green-400 dark:hover:bg-green-600 hover:shadow-md hover:z-10",
     pathname === href
-      ? "text-black dark:text-white bg-green-400 dark:bg-green-600 shadow-md z-10"
-      : "text-gray-700 dark:text-white hover:text-green-600 dark:hover:text-green-400",
+      ? "text-green-700 dark:text-green-400 font-bold hover:text-green-900 dark:hover:text-white"
+      : "text-gray-900 dark:text-white",
   ),
 };
