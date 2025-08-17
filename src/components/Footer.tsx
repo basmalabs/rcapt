@@ -1,18 +1,18 @@
-import PoweredBy from "@/components/footer/PoweredBy";
+import clsx from "clsx";
+
 import Contact from "@/components/footer/Contact";
 import OperatingHours from "@/components/footer/OperatingHours";
-import CallToAction from "@/components/footer/CallToAction";
+import BottomLinks from "@/components/footer/BottomLinks";
+import TextureDiv from "@/components/TextureDiv";
 import { containerStyles } from "@/styles/footer";
+
 
 function Footer() {
   return (
-    <footer className={ containerStyles.footer}>
-      <div className={containerStyles.container}>
-        <Contact />
-        <OperatingHours />
-        <CallToAction />
-      </div>
-      <PoweredBy />
+    <footer className={ clsx(containerStyles.footer)}>
+      <TextureDiv texture="darkStripes"><Contact /></TextureDiv>
+      <TextureDiv texture="asphalt"><OperatingHours /></TextureDiv>
+      <TextureDiv texture="asphalt"><BottomLinks /></TextureDiv>
     </footer>
   );
 }
