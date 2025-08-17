@@ -72,21 +72,27 @@ export const tableStyles = {
     "mt-1"
   ),
   table: clsx(
-    "table-auto border-collapse w-full text-sm",
+    "table-auto lg:table-fixed border-collapse w-full text-sm",
   ),
-  th: clsx(
-    "border-b border-green-300 dark:border-green-700",
-    "px-4 py-2 text-left font-semibold",
-    "bg-green-100/50 dark:bg-green-900/50"
-  ),
-  tr: (isOpen: boolean) => clsx(
+  tr_mobile: (isOpen: boolean) => clsx(
     "border-b border-green-200 dark:border-green-700",
     isOpen && "bg-green-400 dark:bg-green-600"
   ),
-  td: clsx(
-    "border-b border-green-200 dark:border-green-700",
+  td_mobile: clsx(
+    "border-b-2 border-green-500 dark:border-green-700",
     "px-2 py-2"
   ),
+  tr_web: clsx(
+    "border-green-200 dark:border-green-700",
+  ),
+  td_web: ( isOpen: boolean ) => clsx(
+    "border-x-2 border-green-500 dark:border-green-700",
+    "text-center",
+    "px-2 py-1",
+    isOpen && "bg-green-400 dark:bg-green-600",
+  ),
+  td_web_h: clsx( "font-semibold text-base lg:text-lg" ),
+  td_web_info: clsx( "text-sm lg:text-base" )
 };
 
 export const currentStatusStyles = {
@@ -103,7 +109,6 @@ export const currentStatusStyles = {
 export const callToActionStyle = {
   div: clsx(
     "flex flex-col md:flex-row justify-center item-center",
-    // "pt-2 md:pt-6",
     "divide-y-2 md:divide-x-2 md:divide-y-0"
   ),
   p: clsx("py-2 md:px-4 md:py-0 lg:px-10 uppercase text-center"),
@@ -112,7 +117,6 @@ export const callToActionStyle = {
 export const poweredByStyles = {
   container: clsx(
     "flex flex-col md:flex-row items-center justify-center",
-    // "pt-2 pb-4",
     "space-y-2 md:space-x-4 md:space-y-0"
   ),
   link: clsx(

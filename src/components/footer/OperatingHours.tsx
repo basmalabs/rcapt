@@ -1,15 +1,19 @@
 "use client";
 
 import clsx from "clsx";
+import { useState, useEffect } from "react";
+import { useUIStore } from "@/store/useUIStore";
+
 import { OPENING_HOURS } from "@/utils/constants";
 import { getDay, getTimeInMins, timeToMinutes } from "@/utils/datetime";
 import {
   textStyles, tableStyles,
   currentStatusStyles, containerStyles
 } from "@/styles/footer";
-import { useState, useEffect } from "react";
 
 export default function OperatingHours() {
+  const { isMobile } = useUIStore();
+
   // Get current day and current time.
   const [ currentTimeMinutes, setCurrentTimeMinutes ] = useState( getTimeInMins() );
   const [ currentDay, setCurrentDay ] = useState( getDay() );
@@ -41,7 +45,7 @@ export default function OperatingHours() {
       day === currentDay && isOpenNow( opening, closing )
   );
 
-  return (
+  if ( isMobile ) return (
     <section className={ clsx(containerStyles.container) }>
       <h2 className={ textStyles.h1 }>Hours of Operation</h2>
 
@@ -58,13 +62,64 @@ export default function OperatingHours() {
             const isRowOpen =
               day === currentDay && isOpenNow( opening, closing );
             return (
-              <tr className={ tableStyles.tr( isRowOpen ) } key={ day }>
-                <td className={ tableStyles.td }>{ day }</td>
-                <td className={ tableStyles.td }>{ opening }</td>
-                <td className={ tableStyles.td }>{ closing }</td>
+              <tr className={ tableStyles.tr_mobile( isRowOpen ) } key={ day }>
+                <td className={ tableStyles.td_mobile }>{ day }</td>
+                <td className={ tableStyles.td_mobile }>{ opening }</td>
+                <td className={ tableStyles.td_mobile }>{ closing }</td>
               </tr>
             );
           } ) }
+        </tbody>
+      </table>
+    </section>
+  );
+
+  return (
+    <section className={ clsx(containerStyles.container) }>
+      <h2 className={ textStyles.h1 }>Hours of Operation</h2>
+
+      <div className={ currentStatusStyles.wrapper( isCurrentlyOpen ) }>
+        <div className={ currentStatusStyles.label }>Current Status</div>
+        <div className={ currentStatusStyles.value }>
+          { isCurrentlyOpen ? "Open" : "Closed" }
+        </div>
+      </div>
+
+      <table className={ tableStyles.table }>
+        <tbody>
+          {/* Top row → Days */ }
+          <tr className={ tableStyles.tr_web }>
+            { OPENING_HOURS.map( ( [ day, opening, closing ] ) => {
+              const isRowOpen =
+                day === currentDay && isOpenNow( opening, closing );
+              return (
+                <td
+                  key={ `${day}-header` }
+                  className={ clsx(tableStyles.td_web( isRowOpen ), tableStyles.td_web_h) }
+                >
+                  { day }
+                </td>
+              );
+            } ) }
+          </tr>
+
+          {/* Bottom row → Time ranges */ }
+          <tr className={ tableStyles.tr_web }>
+            { OPENING_HOURS.map( ( [ day, opening, closing ] ) => {
+              const isRowOpen =
+                day === currentDay && isOpenNow( opening, closing );
+              const dayInfo =
+                opening === "Closed" ? "Closed" : `${opening} - ${closing}`;
+              return (
+                <td
+                  key={ `${day}-info` }
+                  className={ clsx(tableStyles.td_web( isRowOpen ), tableStyles.td_web_info) }
+                >
+                  { dayInfo }
+                </td>
+              );
+            } ) }
+          </tr>
         </tbody>
       </table>
     </section>
