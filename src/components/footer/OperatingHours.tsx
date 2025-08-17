@@ -1,44 +1,13 @@
 "use client";
 
 import clsx from "clsx";
-import { OPENING_HOURS, TIME_ZONE } from "@/utils/constants";
+import { OPENING_HOURS } from "@/utils/constants";
+import { getDay, getTimeInMins, timeToMinutes } from "@/utils/datetime";
 import {
-  sectionStyles, tableStyles,
-  currentStatusStyles, sectionsArrange
+  textStyles, tableStyles,
+  currentStatusStyles, containerStyles
 } from "@/styles/footer";
 import { useState, useEffect } from "react";
-
-// Get current time in minutes at the company timezone
-const getTimeInMins = () => {
-  const [ hrStr, minStr ] = new Date()
-    .toLocaleTimeString( "en-US", {
-      hour: "2-digit",
-      hour12: false,
-      minute: "2-digit",
-      timeZone: TIME_ZONE
-    } ).split( ":" );
-  return parseInt( hrStr, 10 ) * 60 + parseInt( minStr, 10 );
-};
-
-// Get current day in the company timezone
-const getDay = () => {
-  return new Date().toLocaleString( "default", {
-    weekday: "long",
-    timeZone: TIME_ZONE
-  } );
-};
-
-// Convert "HH:MM AM/PM" to total minutes, null if Closed
-const timeToMinutes = ( timeStr: string ) => {
-  if ( timeStr.toLowerCase() === "closed" ) return null;
-  const [ time, modifier ] = timeStr.split( " " );
-  const [ h, min ] = time.split( ":" ).map( Number );
-  let hours = h;
-  if ( modifier === "PM" && hours !== 12 ) hours += 12;
-  if ( modifier === "AM" && hours === 12 ) hours = 0;
-  const minutes = min || 0;
-  return hours * 60 + minutes;
-};
 
 export default function OperatingHours() {
   // Get current day and current time.
@@ -73,8 +42,8 @@ export default function OperatingHours() {
   );
 
   return (
-    <section className={ clsx(sectionStyles.container, sectionsArrange.m3w2) }>
-      <h2 className={ sectionStyles.header }>Hours of Operation</h2>
+    <section className={ clsx(containerStyles.container) }>
+      <h2 className={ textStyles.h1 }>Hours of Operation</h2>
 
       <div className={ currentStatusStyles.wrapper( isCurrentlyOpen ) }>
         <div className={ currentStatusStyles.label }>Current Status</div>

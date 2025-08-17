@@ -22,6 +22,7 @@
       "@/components/*": ["./src/components/*"],
       "@/hooks/*": ["./src/hooks/*"],
       "@/mytypes/*": ["./src/mytypes/*"],
+      "@/store/*": ["./src/store/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/app/*": ["./src/app/*"],
