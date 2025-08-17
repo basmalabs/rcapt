@@ -3,8 +3,9 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { Copyright } from "lucide-react";
+
 import { BASMA_LABS_URL } from "@/utils/constants";
-import { containerStyles, textStyles, poweredByStyles } from "@/styles/footer";
+import { textStyles, poweredByStyles } from "@/styles/footer";
 
 export default function BottomFooterContainer() {
   return (

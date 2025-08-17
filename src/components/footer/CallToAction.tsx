@@ -3,12 +3,11 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+
 import Modal from "@/components/Modal";
 import PrivacyPolicy from "@/components/footer/PrivacyPolicy";
 import TermsOfService from "@/components/footer/TermsOfService";
-import {
-  containerStyles, textStyles, callToActionStyle
-} from "@/styles/footer";
+import { textStyles, callToActionStyle } from "@/styles/footer";
 
 
 export default function CallToAction() {
