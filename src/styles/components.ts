@@ -2,14 +2,14 @@ import clsx from "clsx";
 
 export const buttonStyles = {
   base: clsx(
-    "rounded-xl px-4 py-2 transition-colors",
-    "text-green-700 dark:text-white",
-    "hover:text-white dark:hover:text-green-700",
-    "bg-green-100 hover:bg-green-500",
-    "dark:bg-green-700 dark:hover:bg-green-100",
-    "border-2 border-green-400 dark:border-green-600",
+    "px-4 py-2 transition-colors",
+    "text-md md:text-lg",
+    "text-white hover:text-green-800 dark:hover:text-green-900",
+    "bg-green-600 hover:bg-green-400 dark:hover:bg-green-300",
+    // "border-2 border-green-400 dark:border-green-600",
     "active:scale-95 active:bg-green-600 dark:active:bg-green-200",
-    "active:text-white dark:active:text-green-700"
+    "active:text-white dark:active:text-green-700",
+    "shadow-xl shadow-green-600/20 hover:shadow-green-400/20"
   ),
 };
 

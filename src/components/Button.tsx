@@ -21,7 +21,7 @@ function Button({ children, route, className, ...props }: ButtonProps) {
 
   return (
     <button
-      className={ clsx(buttonStyles.base, className) }
+      className={ clsx( className, buttonStyles.base ) }
       onClick={ handleClick }
       { ...props }
     >
