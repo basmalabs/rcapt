@@ -3,7 +3,7 @@ import clsx from "clsx";
 export const buttonStyles = {
   base: clsx(
     "px-4 py-2 transition-colors",
-    "text-md md:text-lg",
+    // "text-md md:text-lg",
     "text-white hover:text-green-800 dark:hover:text-green-900",
     "bg-green-600 hover:bg-green-400 dark:hover:bg-green-300",
     // "border-2 border-green-400 dark:border-green-600",
@@ -53,21 +53,3 @@ export const modalArticleStyles = {
   list: clsx( "list-disc list-outside space-y-1 pl-5" ),
   link: clsx( "text-green-600 dark:text-green-400 hover:underline active:underline" )
 };
-
-export const reviewCardStyle = {
-  container: clsx(
-    "border rounded-xl p-6 shadow-sm bg-white dark:bg-gray-800"
-  ),
-  titleDiv: clsx( "flex items-center mb-2" ),
-  titleTextDiv: clsx( "ml-3" ),
-  starsDiv: clsx("flex mb-2"),
-  profileImage: clsx( "rounded-full" ),
-  name: clsx(""),
-  time: clsx( "" ),
-  ratingStar: ( state: boolean ) => clsx(
-    state
-      ? "text-yellow-400"
-      : "text-gray-300",
-  ),
-  reviewText: clsx("text-gray-700 dark:text-gray-300"),
-}

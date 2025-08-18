@@ -37,12 +37,28 @@ export const timeAgo = ( isoDateStr: string ) => {
   const reviewDate = new Date( isoDateStr );
   const timeDiff = now.getTime() - reviewDate.getTime(); // In microseconds
 
-  const minutes = Math.floor( timeDiff / ( 1000 * 60 ) );
-  const hours = Math.floor( minutes / 60 );
-  const days = Math.floor( hours / 24 );
+  const diffMs = now.getTime() - reviewDate.getTime();
+  const hours = Math.floor( diffMs / ( 1000 * 60 * 60 ) );
+  const days = Math.floor( diffMs / ( 1000 * 60 * 60 * 24 ) );
   const weeks = Math.floor( days / 7 );
-  const months = Math.floor( days / 30 ); // approximate
-  const years = Math.floor( days / 365 ); // approximate
+
+  // Calculate months & years more accurately
+  let months =
+    now.getMonth() -
+    reviewDate.getMonth() +
+    12 * ( now.getFullYear() - reviewDate.getFullYear() );
+
+  let years = now.getFullYear() - reviewDate.getFullYear();
+
+  // Adjust months if the current day is before the review day
+  if ( now.getDate() < reviewDate.getDate() ) months--;
+
+  // Adjust years if necessary
+  if (
+    now.getMonth() < reviewDate.getMonth() ||
+    ( now.getMonth() === reviewDate.getMonth() &&
+      now.getDate() < reviewDate.getDate() )
+  ) years--;
 
   if ( days === 0 ) {
     if ( hours === 0 ) return "moments ago";

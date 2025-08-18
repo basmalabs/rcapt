@@ -1,11 +1,17 @@
 import { Metadata } from 'next';
 import { TITLE_NAME } from '@/utils/constants';
+import LoadReviews from '@/app/reviews/LoadReviews';
+import ReviewHeader from '@/app/reviews/ReviewHeader';
+import ReviewFooter from '@/app/reviews/ReviewFooter';
+
 
 
 function Reviews() {
   return (
     <div>
-      Page
+      <ReviewHeader />
+      <LoadReviews />
+      <ReviewFooter />
     </div>
   );
 }
