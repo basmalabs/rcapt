@@ -37,9 +37,8 @@ export const timeAgo = ( isoDateStr: string ) => {
   const reviewDate = new Date( isoDateStr );
   const timeDiff = now.getTime() - reviewDate.getTime(); // In microseconds
 
-  const diffMs = now.getTime() - reviewDate.getTime();
-  const hours = Math.floor( diffMs / ( 1000 * 60 * 60 ) );
-  const days = Math.floor( diffMs / ( 1000 * 60 * 60 * 24 ) );
+  const hours = Math.floor( timeDiff / ( 1000 * 60 * 60 ) );
+  const days = Math.floor( timeDiff / ( 1000 * 60 * 60 * 24 ) );
   const weeks = Math.floor( days / 7 );
 
   // Calculate months & years more accurately

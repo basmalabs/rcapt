@@ -1,11 +1,11 @@
 import redis from "@/server/lib/redis";
 import { postmanSampleGoogleReview } from "@/server/utils/constants";
-import { googleReviews } from "@/mytypes/server";
+import { googleReviews, rawGoogleReview } from "@/mytypes/server";
 
 const REDIS_REVALIDATE_DUR = 60 * 60 * 24 * 14; // Every 14 days
 const REDIS_CACHE_KEY = "google_reviews";
 
-function preprocessReviewData( reviews: any[] ): googleReviews[] {
+function preprocessReviewData( reviews: rawGoogleReview[] ): googleReviews[] {
   return reviews.map( ( r ) => ( {
     name: r.authorAttribution.displayName,
     photoUri: r.authorAttribution.photoUri,

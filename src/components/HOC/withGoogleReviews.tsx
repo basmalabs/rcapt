@@ -1,8 +1,9 @@
 "use server"
 
 import { getGoogleReviews } from '@/server/utils/getGoogleReviews';
+import { rawGoogleReview } from '@/mytypes/server';
 
-function withGoogleReviews<P extends { googleReviews: any[] }>(
+function withGoogleReviews<P extends { googleReviews: rawGoogleReview[] }>(
   WrappedComponent: React.ComponentType<P>
 ) {
   return async function ReviewsHOC( props: Omit<P, "googleReviews"> ) {
