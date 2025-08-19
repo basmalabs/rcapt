@@ -1,5 +1,34 @@
 import clsx from "clsx";
 
+export const reviewHeaderStyles = {
+  section: clsx(
+    "flex flex-col md:flex-row items-center justify-between",
+    "w-full md:w-[70vw] lg:w-[50vw] mx-auto p-6 md:py-4 space-y-3 md:space-y-0 md:space-x-6"
+  ),
+  title: clsx(
+    "text-2xl font-extrabold"
+  ),
+  subtitle: clsx(
+    "text-base text-gray-600 dark:text-gray-400"
+  ),
+  googleText: clsx(
+    "font-semibold text-yellow-600 dark:text-yellow-200"
+  ),
+  button: clsx( "text-base md:text-lg lg:text-xl" ),
+};
+
+export const reviewFooterStyles = {
+  section: clsx(
+    "flex flex-col md:flex-row items-center justify-between",
+    "py-6 w-full md:w-[70vw] lg:w-[50vw]",
+    "space-y-4 md:space-y-0 md:space-x-6"
+  ),
+  textBlock: clsx( "text-center md:text-left" ),
+  mainText: clsx( "text-lg md:text-xl lg:text-2xl font-semibold" ),
+  subText: clsx( "text-sm md:text-base lg:text-lg" ),
+  button: clsx( "text-base md:text-lg lg:text-xl" ),
+};
+
 export const reviewCardStyle = {
   container: clsx(
     "flex flex-col w-full",

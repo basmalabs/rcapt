@@ -8,7 +8,7 @@ import ReviewFooter from '@/app/reviews/ReviewFooter';
 
 function Reviews() {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <ReviewHeader />
       <LoadReviews />
       <ReviewFooter />
