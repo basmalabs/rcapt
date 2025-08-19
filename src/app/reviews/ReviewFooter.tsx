@@ -1,6 +1,5 @@
 "use client"
 
-import clsx from 'clsx';
 import Button from '@/components/Button';
 import { GET_NEW_REVIEW_LINK } from "@/utils/constants";
 import { reviewFooterStyles } from '@/styles/reviews';
