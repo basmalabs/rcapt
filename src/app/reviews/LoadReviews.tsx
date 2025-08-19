@@ -1,14 +1,26 @@
+"use client";
+
 import clsx from "clsx";
+import { useState, useEffect } from "react";
 
 import { googleReviews } from '@/mytypes/server';
-import withGoogleReviews from '@/components/HOC/withGoogleReviews';
 import ReviewCard from '@/app/reviews/ReviewCard';
 import { loadReviewsStyle } from "@/styles/reviews";
 
-// Reload page on server once in 14 days
-export const revalidate = 60 * 60 * 24 * 14;
+function LoadReviews() {
+  // Load reviews from server
+  const [ googleReviews, setGoogleReviews ] = useState<googleReviews[]>( [] );
 
-function LoadReviews( { googleReviews }: { googleReviews: googleReviews[] } ) {
+  useEffect( () => {
+    const fetchReviews = async () => {
+      const response = await fetch( "/api/gmap/reviews" );
+      const data = await response.json();
+      setGoogleReviews( data );
+    };
+
+    fetchReviews();
+  }, [] );
+
   return (
     <div className={ clsx( loadReviewsStyle.container ) }>
       { googleReviews.map( ( reviewData, index ) => (
@@ -18,4 +30,4 @@ function LoadReviews( { googleReviews }: { googleReviews: googleReviews[] } ) {
   );
 }
 
-export default withGoogleReviews( LoadReviews );
+export default LoadReviews;

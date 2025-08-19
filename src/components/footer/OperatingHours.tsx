@@ -4,15 +4,29 @@ import clsx from "clsx";
 import { useState, useEffect } from "react";
 import { useUIStore } from "@/store/useUIStore";
 
-import { OPENING_HOURS } from "@/utils/constants";
+import type { openingHour } from "@/mytypes/server";
 import { getDay, getTimeInMins, timeToMinutes } from "@/utils/datetime";
 import {
   textStyles, tableStyles,
   currentStatusStyles, containerStyles
 } from "@/styles/footer";
 
-export default function OperatingHours() {
+
+function OperatingHours( ) {
   const { isMobile } = useUIStore();
+
+  // Load opening hours from server
+  const [ openingHours, setOpeningHours ] = useState<openingHour[]>( [] );
+
+  useEffect( () => {
+    const fetchOpeningHours = async () => {
+      const response = await fetch( "/api/gmap/opening-hours" );
+      const data = await response.json();
+      setOpeningHours( data );
+    };
+
+    fetchOpeningHours();
+  }, [] );
 
   // Get current day and current time.
   const [ currentTimeMinutes, setCurrentTimeMinutes ] = useState( getTimeInMins() );
@@ -40,7 +54,7 @@ export default function OperatingHours() {
     );
   };
 
-  const isCurrentlyOpen = OPENING_HOURS.some(
+  const isCurrentlyOpen = openingHours.some(
     ( [ day, opening, closing ] ) =>
       day === currentDay && isOpenNow( opening, closing )
   );
@@ -58,7 +72,7 @@ export default function OperatingHours() {
 
       <table className={ tableStyles.table }>
         <tbody>
-          { OPENING_HOURS.map( ( [ day, opening, closing ] ) => {
+          { openingHours.map( ( [ day, opening, closing ] ) => {
             const isRowOpen =
               day === currentDay && isOpenNow( opening, closing );
             return (
@@ -89,7 +103,7 @@ export default function OperatingHours() {
         <tbody>
           {/* Top row → Days */ }
           <tr className={ tableStyles.tr_web }>
-            { OPENING_HOURS.map( ( [ day, opening, closing ] ) => {
+            { openingHours.map( ( [ day, opening, closing ] ) => {
               const isRowOpen =
                 day === currentDay && isOpenNow( opening, closing );
               return (
@@ -105,7 +119,7 @@ export default function OperatingHours() {
 
           {/* Bottom row → Time ranges */ }
           <tr className={ tableStyles.tr_web }>
-            { OPENING_HOURS.map( ( [ day, opening, closing ] ) => {
+            { openingHours.map( ( [ day, opening, closing ] ) => {
               const isRowOpen =
                 day === currentDay && isOpenNow( opening, closing );
               const dayInfo =
@@ -125,3 +139,5 @@ export default function OperatingHours() {
     </section>
   );
 }
+
+export default OperatingHours;
