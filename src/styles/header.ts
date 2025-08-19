@@ -9,8 +9,8 @@ export const headerStyles = {
   ),
   headerNotAtTop: clsx(
     "px-2 py-2 md:px-4 md:py-4",
-    "bg-green-200 text-gray-900",
-    "dark:bg-green-950 dark:text-white",
+    "backdrop-blur-md bg-green-300/70 text-gray-900",
+    "dark:bg-green-950/70 dark:text-white",
     "shadow-sm shadow-green-100 dark:shadow-green-900",
   ),
   headerAtTop: clsx(
