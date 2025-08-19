@@ -13,7 +13,9 @@ function LoadReviews() {
 
   useEffect( () => {
     const fetchReviews = async () => {
-      const response = await fetch( "/api/gmap/reviews" );
+      const response = await fetch( "/api/gmap/reviews", {
+        next: { revalidate: 60 * 60 * 24 * 7 }
+      } );
       const data = await response.json();
       setGoogleReviews( data );
     };

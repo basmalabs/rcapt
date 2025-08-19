@@ -20,7 +20,9 @@ function OperatingHours( ) {
 
   useEffect( () => {
     const fetchOpeningHours = async () => {
-      const response = await fetch( "/api/gmap/opening-hours" );
+      const response = await fetch( "/api/gmap/opening-hours", {
+        next: { revalidate: 60 * 60 * 24 * 7 }
+      } );
       const data = await response.json();
       setOpeningHours( data );
     };
