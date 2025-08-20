@@ -13,7 +13,7 @@ function GeneralLayout( { children }: { children: React.ReactNode } ) {
         <Header />
         <main
           className={ clsx(
-            "min-h-[80vh] ",
+            "min-h-[60vh] ",
             "pt-[140px] md:pt-[100px]",
             "text-gray-900 dark:text-white",
             "bg-white dark:bg-gray-900",
