@@ -1,14 +1,12 @@
-import redis from "@/server/lib/redis";
+import redis, {
+  GMAP_CACHE_KEY, GMAP_REVALIDATE_DUR 
+} from "@/server/lib/redis";
 import { sampleGMapData } from "@/server/utils/constants";
 import { cleanedGMapData } from "@/mytypes/server";
 import {
   preprocessReviewData,
   preprocessOpeningHours 
-  
 } from "@/server/utils/preprocessGMapData";
-
-const REDIS_REVALIDATE_DUR = 60 * 60 * 24 * 7; // Every 7 days
-const REDIS_CACHE_KEY = "gmap_api_data";
 
 function getFallbackData(): cleanedGMapData {
   return {
@@ -19,7 +17,7 @@ function getFallbackData(): cleanedGMapData {
 
 async function getCachedData(): Promise<cleanedGMapData | null> {
   try {
-    const cached = await redis.get<string>( REDIS_CACHE_KEY );
+    const cached = await redis.get<string>( GMAP_CACHE_KEY );
     return cached ? JSON.parse( cached ) : null;
   } catch ( error ) {
     console.error( "GMAP Data Fetching (Redis Error):", error );
@@ -54,16 +52,16 @@ export async function getGMapData(): Promise<cleanedGMapData> {
 
     if ( !res.ok ) {
       console.error( "GMAP Data Fetching (Fetching Failed and Falling back to cache or sample)" );
-      return cachedData ?? getFallbackData();
+      return getFallbackData();
     }
   } catch (error) {
     console.error( "GMAP Data Fetching (Error occurred): ", error );
-    return cachedData ?? getFallbackData();
+    return getFallbackData();
   }
 
   if (!res) {
     console.error("GMAP Data Fetching (Undefined Response Received): falling back to cache or sample");
-    return cachedData ?? getFallbackData();
+    return getFallbackData();
   }
 
   const data = await res.json();
@@ -82,8 +80,8 @@ export async function getGMapData(): Promise<cleanedGMapData> {
     openingHours: preprocessOpeningHours( openingHours ),
   }
 
-  await redis.set( REDIS_CACHE_KEY, JSON.stringify( freshData ), {
-    ex: REDIS_REVALIDATE_DUR,
+  await redis.set( GMAP_CACHE_KEY, JSON.stringify( freshData ), {
+    ex: GMAP_REVALIDATE_DUR,
   });
 
   // Return the newly cached reviews

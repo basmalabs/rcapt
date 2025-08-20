@@ -1,0 +1,8 @@
+import { revalidatePath } from "next/cache";
+import redis, { GMAP_CACHE_KEY } from "@/server/lib/redis";
+
+export async function GET() {
+  revalidatePath( "/api/gmap/reviews" );
+  await redis.del( GMAP_CACHE_KEY );
+  console.log( "Revalidation triggered for /api/gmap/reviews. And Redis Cache invalidated for key: ", GMAP_CACHE_KEY );
+}
