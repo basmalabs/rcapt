@@ -1,7 +1,5 @@
 import { Redis } from '@upstash/redis'
 
-let redis: Redis;
-
 declare global {
   var _redis: Redis | undefined;
 }
@@ -12,7 +10,7 @@ if ( !global._redis ) {
   console.log( "Redis initialized" );
 }
 
-redis = global._redis;
+const redis = global._redis;
 
 export const GMAP_REVALIDATE_DUR = 60 * 60 * 24 * 7; // Every 7 days
 export const GMAP_CACHE_KEY = "rcapt/gmap_api_data";
