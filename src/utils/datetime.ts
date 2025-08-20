@@ -1,4 +1,5 @@
 import { TIME_ZONE } from "@/utils/constants";
+import type { openingHour } from "@/mytypes/server";
 
 // Get current time in minutes at the company timezone
 export const getTimeInMins = () => {
@@ -23,9 +24,14 @@ export const getDay = () => {
 // Convert "HH:MM AM/PM" to total minutes, null if Closed
 export const timeToMinutes = ( timeStr: string ) => {
   if ( timeStr.toLowerCase() === "closed" ) return null;
-  const [ time, modifier ] = timeStr.split( " " );
+
+  // Replace non-breaking spaces with normal space
+  const normalized = timeStr.replace( /\u202f/g, " " ).trim();
+
+  const [ time, modifier ] = normalized.split( " " );
   const [ h, min ] = time.split( ":" ).map( Number );
   let hours = h;
+  console.log("Modifier:", modifier);
   if ( modifier === "PM" && hours !== 12 ) hours += 12;
   if ( modifier === "AM" && hours === 12 ) hours = 0;
   const minutes = min || 0;
@@ -69,3 +75,84 @@ export const timeAgo = ( isoDateStr: string ) => {
   if ( months < 12 ) return `${months} month${months > 1 ? "s" : ""} ago`;
   return `${years} year${years > 1 ? "s" : ""} ago`;
 };
+
+// Appointment Form Helper Functions
+
+export const dateInCompanyTZ = ( date: Date ): Date => {
+  const parts = date.toLocaleString( "en-US", {
+    timeZone: TIME_ZONE,
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  } ).split( "/" ).map( Number ); // [month, day, year]
+
+  // Note: JS months are 0-based
+  return new Date( parts[ 2 ], parts[ 0 ] - 1, parts[ 1 ] );
+};
+
+const getTimeInMinsForTZ = ( date: Date ) => {
+  const [ h, m ] = date.toLocaleString( "en-US", {
+    hour12: false,
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: TIME_ZONE
+  } ).split( ":" ).map( Number );
+  return h * 60 + m;
+};
+
+const addDays = ( base: Date, n: number ) => {
+  const d = new Date( base );
+  d.setDate( d.getDate() + n );
+  return d;
+};
+
+const isOpenTuple = ( open: string, close: string ) =>
+  open.toLowerCase() !== "closed" && close.toLowerCase() !== "closed";
+
+const getScheduleForDate = ( date: Date, openingHours: openingHour[] ) => {
+  const dayName = date.toLocaleString( "en-US", {
+    weekday: "long",
+  } );
+  return openingHours.find( ( [ day ] ) => day === dayName );
+};
+
+export const computeDefaultStartDate = ( openingHours: openingHour[] ) => {
+  
+  // start from tomorrow
+  let d = addDays( dateInCompanyTZ( new Date() ), 1 ); 
+
+  for ( let i = 0; i < 7; i++ ) {
+    const tuple = getScheduleForDate( d, openingHours );
+    if ( tuple && isOpenTuple( tuple[ 1 ], tuple[ 2 ] ) ) return d;
+    d = addDays( d, 1 );
+  }
+
+  // fallback: just return the day after fromDate
+  return addDays( dateInCompanyTZ( new Date() ), 1 );
+};
+
+export const filterDate = ( date: Date, openingHours: openingHour[] ): boolean => {
+  const dayName = date.toLocaleDateString( "en-US", {
+    weekday: "long",
+  } );
+  const daySchedule = openingHours.find( d => d[0] === dayName );
+  if ( !daySchedule ) return false;
+  return daySchedule[1] !== "Closed";
+}
+
+export const filterTime = ( time: Date, selectedDate: Date, openingHours: openingHour[] ): boolean => {
+  // No opening hours provided, assume open
+  if ( !openingHours.length ) return true;
+
+  // Get the day's schedule
+  const selectedDayName = selectedDate.toLocaleDateString( "default", { weekday: "long" } );
+  const schedule = openingHours.find( ( [ d ] ) => d === selectedDayName );
+
+  if ( !schedule || schedule[ 1 ] === "Closed" ) return false;
+
+  const minutes = time.getHours() * 60 + time.getMinutes();
+  const openMinutes = timeToMinutes( schedule[ 1 ] )!;
+  const closeMinutes = timeToMinutes( schedule[ 2 ] )!;
+
+  return minutes >= openMinutes  && minutes <= closeMinutes;
+}

@@ -9,14 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
     "@upstash/redis": "^1.35.3",
     "clsx": "^2.1.1",
     "lucide-react": "^0.539.0",
+    "mongoose": "^8.17.2",
     "next": "15.4.6",
     "next-themes": "^0.4.6",
     "react": "19.1.0",
+    "react-datepicker": "^8.7.0",
     "react-dom": "19.1.0",
+    "react-hook-form": "^7.62.0",
     "react-social-icons": "^6.24.0",
+    "yup": "^1.7.0",
     "zustand": "^5.0.7"
   },
   "devDependencies": {
