@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-const MONGO_URI = process.env.MONGO_URI || "";
-if ( !MONGO_URI ) throw new Error( "DB Connection Error: MONGO_URI is not defined" );
+const MONGODB_URI = process.env.MONGODB_URI || "";
+if ( !MONGODB_URI ) throw new Error( "DB Connection Error: MONGODB_URI is not defined" );
 
 interface MongooseCache {
   conn: typeof mongoose | null;
@@ -30,7 +30,7 @@ async function connectDB() {
   if ( cached.conn ) return cached.conn;
 
   if ( cached.promise === null ) {
-    cached.promise = mongoose.connect( MONGO_URI ).then( (mongoose) => {
+    cached.promise = mongoose.connect( MONGODB_URI ).then( (mongoose) => {
       cached.conn = mongoose;
       return cached.conn;
     });

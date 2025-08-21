@@ -12,10 +12,18 @@ function LoadReviews() {
   const [ googleReviews, setGoogleReviews ] = useState<googleReviews[]>( [] );
 
   useEffect( () => {
+    // Fetch from session cache
+    const cached = sessionStorage.getItem( "googleReviews" );
+    if ( cached ) {
+      setGoogleReviews( JSON.parse( cached ) );
+      return; // skip fetch if cache exists
+    }
+    // Fetch reviews from the API
     const fetchReviews = async () => {
       const response = await fetch( "/api/gmap/reviews" );
       const data = await response.json();
       setGoogleReviews( data );
+      sessionStorage.setItem( "googleReviews", JSON.stringify( data ) );
     };
 
     fetchReviews();

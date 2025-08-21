@@ -53,3 +53,38 @@ export const modalArticleStyles = {
   list: clsx( "list-disc list-outside space-y-1 pl-5" ),
   link: clsx( "text-green-600 dark:text-green-400 hover:underline active:underline" )
 };
+
+export const appointmentFormStyles = {
+  container: clsx(
+    "max-w-2xl mx-auto p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-lg"
+  ),
+  headerDiv: clsx( "mb-8 text-center" ),
+  groupDiv: clsx(
+    "w-full flex",
+    "flex-col md:flex-row md:flex-wrap gap-4"
+  ),
+  fieldDiv: clsx( "mb-4 w-full md:w-[48%]" ),
+  label: clsx(
+    "block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+  ),
+  input: clsx(
+    "w-full p-2",
+    "border border-green-400 rounded-lg",
+    "text-gray-900 dark:text-gray-100 dark:bg-gray-800",
+    "focus:ring-2 focus:ring-green-400 focus:outline-none"
+  ),
+  warning: clsx( "text-yellow-800 dark:text-yellow-200 text-sm mb-4" ),
+  error: clsx( "text-red-600 dark:text-red-400 text-sm mt-1" ),
+  button: clsx(
+    "w-full mt-4 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition"
+  ),
+  mainHeading: clsx(
+    "text-2xl md:text-4xl font-bold",
+    "text-green-600 dark:text-green-400"
+  ),
+  mainSubHeading: clsx( "text-base md:text-lg" ),
+  divHeading: clsx(
+    "text-xl md:text-2xl mb-2",
+    "text-green-800 dark:text-green-200"
+  ),
+};
