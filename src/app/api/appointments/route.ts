@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+
 import connectDB from "@/server/lib/mongodb";
-import Appointment, { type AppointmentType } from "@/models/Appointment";
+import Appointment from "@/models/Appointment";
+import { type AppointmentType } from "@/mytypes/server";
 
 export async function POST( req: Request ) {
   try {

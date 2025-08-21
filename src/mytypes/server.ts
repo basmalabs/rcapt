@@ -1,3 +1,5 @@
+import { Document } from "mongoose";
+
 export type googleReviews = {
   name: string;
   photoUri: string;
@@ -33,3 +35,18 @@ export type cleanedGMapData = {
   reviews: googleReviews[];
   openingHours: openingHour[];
 };
+
+export interface AppointmentType extends Document {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  preferredContact: "Email" | "Phone";
+  returningPatient: boolean;
+  appointmentDate: Date;
+  dateFlexibility: boolean;
+  timeOfDay: "Morning" | "Lunch" | "Afternoon" | "Evening" | "Anytime";
+  appointmentTime?: Date | null;
+  notes?: string | null;
+  createdAt: Date;
+}
