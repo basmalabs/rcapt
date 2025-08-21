@@ -1,5 +1,5 @@
 import { TIME_ZONE } from "@/utils/constants";
-import type { openingHour } from "@/mytypes/server";
+import type { openingHour } from "@/server/utils/types";
 
 // Get current time in minutes at the company timezone
 export const getTimeInMins = () => {

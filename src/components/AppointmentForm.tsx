@@ -12,9 +12,43 @@ import {
   computeDefaultStartDate,
   filterDate, filterTime
 } from "@/utils/datetime";
-import type { openingHour } from "@/mytypes/server";
-import { appointmentFormStyles } from "@/styles/components";
+import type { openingHour } from "@/server/utils/types";
 import { TIME_ZONE } from "@/utils/constants";
+
+const styles = {
+  container: clsx(
+    "max-w-2xl mx-auto p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-lg"
+  ),
+  headerDiv: clsx( "mb-8 text-center" ),
+  groupDiv: clsx(
+    "w-full flex",
+    "flex-col md:flex-row md:flex-wrap gap-4"
+  ),
+  fieldDiv: clsx( "mb-4 w-full md:w-[48%]" ),
+  label: clsx(
+    "block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+  ),
+  input: clsx(
+    "w-full p-2",
+    "border border-green-400 rounded-lg",
+    "text-gray-900 dark:text-gray-100 dark:bg-gray-800",
+    "focus:ring-2 focus:ring-green-400 focus:outline-none"
+  ),
+  warning: clsx( "text-yellow-800 dark:text-yellow-200 text-sm mb-4" ),
+  error: clsx( "text-red-600 dark:text-red-400 text-sm mt-1" ),
+  button: clsx(
+    "w-full mt-4 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition"
+  ),
+  mainHeading: clsx(
+    "text-2xl md:text-4xl font-bold",
+    "text-green-600 dark:text-green-400"
+  ),
+  mainSubHeading: clsx( "text-base md:text-lg" ),
+  divHeading: clsx(
+    "text-xl md:text-2xl mb-2",
+    "text-green-800 dark:text-green-200"
+  ),
+};
 
 // Validation schema
 const appointmentSchema = yup.object( {
@@ -149,119 +183,119 @@ function AppointmentForm() {
   };
 
   return (
-    <section className={ appointmentFormStyles.container }>
-      <div className={ appointmentFormStyles.headerDiv }>
-        <h1 className={ appointmentFormStyles.mainHeading }>
+    <section className={ styles.container }>
+      <div className={ styles.headerDiv }>
+        <h1 className={ styles.mainHeading }>
           Book an Appointment
         </h1>
-        <p className={ appointmentFormStyles.mainSubHeading }>
+        <p className={ styles.mainSubHeading }>
           Fill out the form and we&rsquo;ll confirm your booking.
         </p>
       </div>
 
       <form onSubmit={ handleSubmit( onSubmit ) }>
         {/* --- Personal Info --- */ }
-        <h2 className={ appointmentFormStyles.divHeading }>
+        <h2 className={ styles.divHeading }>
           Personal Information
         </h2>
 
-        <div className={ appointmentFormStyles.groupDiv }>
+        <div className={ styles.groupDiv }>
 
-          <div className={ appointmentFormStyles.fieldDiv }>
-            <label className={ appointmentFormStyles.label }>
+          <div className={ styles.fieldDiv }>
+            <label className={ styles.label }>
               First Name *
             </label>
             <input
               type="text"
               { ...register( "firstName" ) }
-              className={ appointmentFormStyles.input }
+              className={ styles.input }
             />
             { errors.firstName && (
-              <p className={ appointmentFormStyles.error }>
+              <p className={ styles.error }>
                 { errors.firstName.message }
               </p>
             ) }
           </div>
 
-          <div className={ appointmentFormStyles.fieldDiv }>
-            <label className={ appointmentFormStyles.label }>
+          <div className={ styles.fieldDiv }>
+            <label className={ styles.label }>
               Last Name *
             </label>
             <input
               type="text"
               { ...register( "lastName" ) }
-              className={ appointmentFormStyles.input }
+              className={ styles.input }
             />
             { errors.lastName && (
-              <p className={ appointmentFormStyles.error }>
+              <p className={ styles.error }>
                 { errors.lastName.message }
               </p>
             ) }
           </div>
 
-          <div className={ appointmentFormStyles.fieldDiv }>
-            <label className={ appointmentFormStyles.label }>
+          <div className={ styles.fieldDiv }>
+            <label className={ styles.label }>
               Contact Email *
             </label>
             <input
               type="email"
               { ...register( "email" ) }
-              className={ appointmentFormStyles.input }
+              className={ styles.input }
             />
             { errors.email && (
-              <p className={ appointmentFormStyles.error }>
+              <p className={ styles.error }>
                 { errors.email.message }
               </p>
             ) }
           </div>
 
-          <div className={ appointmentFormStyles.fieldDiv }>
-            <label className={ appointmentFormStyles.label }>
+          <div className={ styles.fieldDiv }>
+            <label className={ styles.label }>
               Contact Phone Number *
             </label>
             <input
               type="tel"
               { ...register( "phone" ) }
-              className={ appointmentFormStyles.input }
+              className={ styles.input }
             />
             { errors.phone && (
-              <p className={ appointmentFormStyles.error }>
+              <p className={ styles.error }>
                 { errors.phone.message }
               </p>
             ) }
           </div>
 
-          <div className={ appointmentFormStyles.fieldDiv }>
-            <label className={ appointmentFormStyles.label }>
+          <div className={ styles.fieldDiv }>
+            <label className={ styles.label }>
               Preferred Contact Method *
             </label>
             <select
               { ...register( "preferredContact" ) }
-              className={ appointmentFormStyles.input }
+              className={ styles.input }
             >
               <option value="Email">Email</option>
               <option value="Phone">Phone</option>
             </select>
             { errors.preferredContact && (
-              <p className={ appointmentFormStyles.error }>
+              <p className={ styles.error }>
                 { errors.preferredContact.message }
               </p>
             ) }
           </div>
 
-          <div className={ appointmentFormStyles.fieldDiv }>
-            <label className={ appointmentFormStyles.label }>
+          <div className={ styles.fieldDiv }>
+            <label className={ styles.label }>
               Are you a returning patient? *
             </label>
             <select
               { ...register( "returningPatient" ) }
-              className={ appointmentFormStyles.input }
+              className={ styles.input }
             >
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>
             { errors.returningPatient && (
-              <p className={ appointmentFormStyles.error }>
+              <p className={ styles.error }>
                 { errors.returningPatient.message }
               </p>
             ) }
@@ -269,19 +303,19 @@ function AppointmentForm() {
         </div>
 
         {/* --- Appointment Preferences --- */ }
-        <h2 className={ appointmentFormStyles.divHeading }>
+        <h2 className={ styles.divHeading }>
           Appointment Preferences
         </h2>
         { timezoneWarning && (
-          <p className={ appointmentFormStyles.warning }>
+          <p className={ styles.warning }>
             { timezoneWarning }
           </p>
         ) }
-        <div className={ appointmentFormStyles.groupDiv }>
+        <div className={ styles.groupDiv }>
 
           {/* Date Picker */ }
-          <div className={ appointmentFormStyles.fieldDiv }>
-            <label className={ appointmentFormStyles.label }>
+          <div className={ styles.fieldDiv }>
+            <label className={ styles.label }>
               Preferred Date *
             </label>
             <Controller
@@ -297,27 +331,27 @@ function AppointmentForm() {
                     setSelectedDate( date );
                   } }
                   filterDate={ ( d ) => filterDate( d, openingHours ) }
-                  className={ appointmentFormStyles.input }
+                  className={ styles.input }
                   dateFormat="MMMM d, yyyy"
                   minDate={ minDate }
                 />
               ) }
             />
             { errors.appointmentDate && (
-              <p className={ appointmentFormStyles.error }>
+              <p className={ styles.error }>
                 { errors.appointmentDate.message }
               </p>
             ) }
           </div>
 
           {/* Date Flexibility */ }
-          <div className={ appointmentFormStyles.fieldDiv }>
-            <label className={ appointmentFormStyles.label }>
+          <div className={ styles.fieldDiv }>
+            <label className={ styles.label }>
               Date Flexibility *
             </label>
             <select
               { ...register( "dateFlexibility" ) }
-              className={ appointmentFormStyles.input }
+              className={ styles.input }
             >
               <option value="true">Flexible</option>
               <option value="false">Not Flexible</option>
@@ -325,13 +359,13 @@ function AppointmentForm() {
           </div>
 
           {/* Time of Day */ }
-          <div className={ appointmentFormStyles.fieldDiv }>
-            <label className={ appointmentFormStyles.label }>
+          <div className={ styles.fieldDiv }>
+            <label className={ styles.label }>
               Preferred Time of Day *
             </label>
             <select
               { ...register( "timeOfDay" ) }
-              className={ appointmentFormStyles.input }
+              className={ styles.input }
               onChange={ ( e ) => setSelectedTimeOfDay( e.target.value ) }
             >
               <option value="Morning">Morning</option>
@@ -341,7 +375,7 @@ function AppointmentForm() {
               <option value="Anytime">Anytime</option>
             </select>
             { errors.timeOfDay && (
-              <p className={ appointmentFormStyles.error }>
+              <p className={ styles.error }>
                 { errors.timeOfDay.message }
               </p>
             ) }
@@ -349,8 +383,8 @@ function AppointmentForm() {
 
           {/* Preferred Appointment Time (only if not "Anytime") */ }
           { selectedTimeOfDay !== "Anytime" && (
-            <div className={ appointmentFormStyles.fieldDiv }>
-              <label className={ appointmentFormStyles.label }>
+            <div className={ styles.fieldDiv }>
+              <label className={ styles.label }>
                 Preferred Appointment Time
               </label>
               <Controller
@@ -366,28 +400,28 @@ function AppointmentForm() {
                     timeCaption="Time"
                     dateFormat="h:mm aa"
                     filterTime={ getTimeFilter }
-                    className={ appointmentFormStyles.input }
+                    className={ styles.input }
                     placeholderText="Select a time"
                   />
                 ) }
               />
               { errors.appointmentTime && (
-                <p className={ appointmentFormStyles.error }>{ errors.appointmentTime.message }</p>
+                <p className={ styles.error }>{ errors.appointmentTime.message }</p>
               ) }
             </div>
           ) }
         </div>
 
         {/* --- Additional Info --- */ }
-        <h2 className={ appointmentFormStyles.divHeading }>
+        <h2 className={ styles.divHeading }>
           Additional Information
         </h2>
-        <div className={ appointmentFormStyles.groupDiv }>
+        <div className={ styles.groupDiv }>
           {/* <div className={ appointmentFormStyles.fieldDiv }> */ }
           {/* <label className={ appointmentFormStyles.label }>Notes</label> */ }
           <textarea
             { ...register( "notes" ) }
-            className={ appointmentFormStyles.input }
+            className={ styles.input }
             rows={ 3 }
             placeholder="Add any details about your visit..."
           />
@@ -407,7 +441,7 @@ function AppointmentForm() {
         ) }
         <button
           type="submit"
-          className={ appointmentFormStyles.button }
+          className={ styles.button }
           disabled={ isSubmitting }
         >
           { isSubmitting ? "Submitting..." : "Submit Appointment" }

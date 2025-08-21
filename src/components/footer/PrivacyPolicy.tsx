@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { modalArticleStyles } from "@/styles/components";
+import { modalArticleStyles } from "./styles";
 
 export default function PrivacyPolicy() {
   return (

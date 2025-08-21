@@ -1,15 +1,49 @@
 "use client";
 
 import Link from "next/link";
+import clsx from "clsx";
 import { useState } from "react";
 import { SocialIcon } from "react-social-icons";
 import { Phone, Mail, Landmark } from "lucide-react";
 
 import { URL } from "@/utils/constants";
-import { containerStyles, textStyles, contactStyles } from "@/styles/footer";
+import { containerStyles, textStyles } from "./styles";
 import Button from "@/components/Button";
 import Modal from "@/components/Modal";
 import AppointmentForm from "@/components/AppointmentForm";
+
+const contactStyles = {
+  // Main container for contact information
+  div: clsx( "flex flex-row gap-2 justify-center items-center" ),
+  // Each subcontainers directly in the contact component
+  // except the top texts.
+  contactsDiv: clsx(
+    "flex flex-col md:flex-row justify-center",
+    "space-y-2 md:space-y-0 md:space-x-8"
+  ),
+  // Container call, email and address
+  contactsSubDiv: clsx(
+    // Container for each contact method
+    "flex flex-row md:flex-col items-center justify-evenly",
+    "py-2 px-4 space-x-4 md:space-x-0 md:space-y-2",
+    // Normal View
+    "text-left md:text-center ",
+    "text-green-800 dark:text-green-900",
+    "bg-green-400 dark:bg-green-300",
+    "border-2 border-green-500",
+    // Hover Effects
+    "hover:text-green-100 dark:hover:text-green-300",
+    "hover:bg-green-600 dark:hover:bg-green-900",
+    "hover:border-2 hover:border-green-700 dark:hover:border-green-200",
+    // Active Effects
+    "active:text-white dark:active:text-green-700",
+    "active:scale-95 active:bg-green-600 dark:active:bg-green-200",
+  ),
+  button: clsx( "w-full md:w-[300px] rounded-none" ),
+  contactIcon: clsx( "grow-0" ),
+  socialIcon: clsx( "" ),
+  text: clsx( "grow-1" ),
+}
 
 export default function Contact() {
   const [ isBookModalOpen, setBookModalOpen ] = useState( false );

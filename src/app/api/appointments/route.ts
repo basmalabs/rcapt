@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import connectDB from "@/server/lib/mongodb";
 import Appointment from "@/models/Appointment";
-import { type AppointmentType } from "@/mytypes/server";
+import { type AppointmentType } from "@/server/utils/types";
 
 export async function POST( req: Request ) {
   try {

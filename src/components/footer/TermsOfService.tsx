@@ -1,6 +1,6 @@
 "use client";
 
-import { modalArticleStyles } from "@/styles/components";
+import { modalArticleStyles } from "./styles";
 import Link from "next/link";
 
 export default function TermsOfService() {

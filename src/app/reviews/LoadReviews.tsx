@@ -3,9 +3,17 @@
 import clsx from "clsx";
 import { useState, useEffect } from "react";
 
-import { googleReviews } from '@/mytypes/server';
+import { googleReviews } from '@/server/utils/types';
 import ReviewCard from '@/app/reviews/ReviewCard';
-import { loadReviewsStyle } from "@/styles/reviews";
+
+export const loadReviewsStyle = {
+  container: clsx(
+    "max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]",
+    "m-auto mb-4",
+    "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+    "gap-4 md:gap-6 lg:gap-8"
+  ),
+};
 
 function LoadReviews() {
   // Load reviews from server
