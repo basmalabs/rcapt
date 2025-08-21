@@ -92,6 +92,9 @@ function AppointmentForm() {
   const [ selectedTimeOfDay, setSelectedTimeOfDay ] = useState<string>( "Anytime" );
   const [ openingHours, setOpeningHours ] = useState<openingHour[]>( [] );
 
+  const [ isSubmitting, setIsSubmitting ] = useState( false );
+  const [ submitMessage, setSubmitMessage ] = useState<string | null>( null );
+
   // Checking time zone mismatch
   useEffect( () => {
     const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -133,6 +136,7 @@ function AppointmentForm() {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm( {
     resolver: yupResolver( appointmentSchema ),
@@ -145,25 +149,32 @@ function AppointmentForm() {
     },
   } );
 
-  const onSubmit = ( data: AppointmentFormData ) => {
-    useEffect( () => {
-      const saveAppointment = async () => {
-        const response = await fetch( "/api/appointments", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify( data ),
-        } );
+  const onSubmit = async ( data: AppointmentFormData ) => {
+    setIsSubmitting( true ); // disable button
 
-        if ( !response.ok ) {
-          console.error( "Error saving appointment:", response.statusText );
-        }
-        console.log( "Appointment saved successfully" );
-      };
+    try {
+      const response = await fetch( "/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify( data ),
+      } );
 
-      saveAppointment();
-    }, [ data ] );
+      if ( !response.ok ) {
+        const errorText = await response.text();
+        throw new Error( errorText || "Failed to submit" );
+      }
+
+      setSubmitMessage( "Appointment submitted successfully!" );
+      reset();
+    } catch ( error: unknown ) {
+      console.error( "Error saving appointment:", error );
+      setSubmitMessage( "Failed to submit appointment. Please try again." );
+    } finally {
+      setIsSubmitting( false );
+
+      // Hide the message after 3 seconds
+      setTimeout( () => setSubmitMessage( null ), 5000 );
+    }
 
   };
 
@@ -414,8 +425,22 @@ function AppointmentForm() {
         </div>
 
         {/* Submit */ }
-        <button type="submit" className={ appointmentFormStyles.button }>
-          Submit Appointment
+        { submitMessage && (
+          <p
+            className={ clsx(
+              "mt-2 text-center",
+              submitMessage.includes( "success" ) ? "text-green-600" : "text-red-500"
+            ) }
+          >
+            { submitMessage }
+          </p>
+        ) }
+        <button
+          type="submit"
+          className={ appointmentFormStyles.button }
+          disabled={ isSubmitting }
+        >
+          { isSubmitting ? "Submitting..." : "Submit Appointment" }
         </button>
       </form>
     </section>
