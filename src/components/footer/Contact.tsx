@@ -30,7 +30,7 @@ const contactStyles = {
     "text-left md:text-center ",
     "text-green-800 dark:text-green-900",
     "bg-green-400 dark:bg-green-300",
-    "border-2 border-green-500",
+    "border-2 border-green-500 rounded-md md:rounded-xl",
     // Hover Effects
     "hover:text-green-100 dark:hover:text-green-300",
     "hover:bg-green-600 dark:hover:bg-green-900",

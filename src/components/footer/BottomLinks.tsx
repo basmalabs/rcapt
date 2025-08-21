@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { containerStyles } from "@/styles/footer";
+import { containerStyles } from "./styles";
 import CallToAction from "@/components/footer/CallToAction";
 import PoweredBy from "@/components/footer/PoweredBy";
 

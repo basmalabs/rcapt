@@ -18,15 +18,15 @@ const styles = {
   ),
   overlay: clsx(
     "absolute inset-0 w-full h-full z-10",
-    "bg-gradient-to-b from-white/50 to-white/30",
+    "bg-gradient-to-b from-white/10 to-white/40 through-white/30",
     "dark:from-black/40 dark:to-black/80"
   ),
   textDiv: clsx(
     "relative z-20 flex flex-col items-center justify-center",
     "h-full text-center px-4",
   ),
-  h1: clsx("text-4xl md:text-6xl font-bold text-white"),
-  p: clsx("mt-4 text-lg md:text-2xl text-white"),
+  h1: clsx("text-4xl md:text-6xl font-bold text-gray-900 dark:text-white"),
+  p: clsx("mt-4 text-lg md:text-2xl text-gray-900 dark:text-white"),
 };
 
 function HeroSection({ title, subtitle, imageUrl }: HeroSectionProps) {
