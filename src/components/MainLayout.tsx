@@ -14,7 +14,6 @@ function GeneralLayout( { children }: { children: React.ReactNode } ) {
         <main
           className={ clsx(
             "min-h-[60vh] ",
-            "pt-[140px] md:pt-[100px]",
             "text-gray-900 dark:text-white",
             "bg-white dark:bg-gray-900",
           ) }
