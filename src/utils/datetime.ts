@@ -31,7 +31,6 @@ export const timeToMinutes = ( timeStr: string ) => {
   const [ time, modifier ] = normalized.split( " " );
   const [ h, min ] = time.split( ":" ).map( Number );
   let hours = h;
-  console.log("Modifier:", modifier);
   if ( modifier === "PM" && hours !== 12 ) hours += 12;
   if ( modifier === "AM" && hours === 12 ) hours = 0;
   const minutes = min || 0;
