@@ -33,8 +33,7 @@ const appointmentSchema = yup.object( {
     .required( "Required" ),
   appointmentDate: yup
     .date()
-    .required( "Required" )
-    .typeError( "Required" ),
+    .required( "Required" ),
   dateFlexibility: yup.boolean().required( "Required" ),
   timeOfDay: yup
     .string()
@@ -70,14 +69,20 @@ const appointmentFormStyles = {
     "text-gray-900 dark:text-gray-100 dark:bg-gray-800",
     "focus:ring-2 focus:ring-green-400 focus:outline-none"
   ),
-  warning: clsx( "text-yellow-800 text-sm mb-4" ),
+  warning: clsx( "text-yellow-800 dark:text-yellow-200 text-sm mb-4" ),
   error: clsx( "text-red-500 text-sm mt-1" ),
   button: clsx(
     "w-full mt-4 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition"
   ),
-  mainHeading: clsx( "text-2xl md:text-4xl font-bold" ),
+  mainHeading: clsx(
+    "text-2xl md:text-4xl font-bold",
+    "text-green-600 dark:text-green-400"
+  ),
   mainSubHeading: clsx( "text-base md:text-lg" ),
-  divHeading: clsx( "text-xl md:text-2xl font-semibold mb-2" ),
+  divHeading: clsx(
+    "text-xl md:text-2xl mb-2",
+    "text-green-800 dark:text-green-200"
+  ),
 };
 
 function AppointmentForm() {
@@ -111,17 +116,15 @@ function AppointmentForm() {
   }, [] );
 
   const minDate = useMemo( () => {
-    return computeDefaultStartDate( openingHours );
+    const minDate = computeDefaultStartDate( openingHours );
+    setSelectedDate( minDate );
+    return minDate;
   }, [ openingHours ] );
 
-  useEffect( () => {
-    if ( minDate && !selectedDate ) setSelectedDate( minDate );
-  }, [ minDate ] );
-
   const getTimeFilter = useCallback(
-    ( date: Date | null ) => ( time: Date ) => {
-      if ( !date ) return false;
-      return filterTime( time, date, openingHours );
+    ( time: Date ) => {
+      if ( !selectedDate ) return false;
+      return filterTime( time, selectedDate, openingHours );
     },
     [ selectedDate, openingHours ]
   );
@@ -133,11 +136,35 @@ function AppointmentForm() {
     formState: { errors },
   } = useForm( {
     resolver: yupResolver( appointmentSchema ),
+    defaultValues: {
+      appointmentDate: minDate, // your minDate
+      timeOfDay: "Anytime",
+      preferredContact: "Email",
+      returningPatient: false,
+      dateFlexibility: true,
+    },
   } );
 
   const onSubmit = ( data: AppointmentFormData ) => {
-    console.log( "Appointment data:", data );
-    // send to API for MongoDB save
+    useEffect( () => {
+      const saveAppointment = async () => {
+        const response = await fetch( "/api/appointments", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify( data ),
+        } );
+
+        if ( !response.ok ) {
+          console.error( "Error saving appointment:", response.statusText );
+        }
+        console.log( "Appointment saved successfully" );
+      };
+
+      saveAppointment();
+    }, [ data ] );
+
   };
 
   return (
@@ -230,7 +257,6 @@ function AppointmentForm() {
             <select
               { ...register( "preferredContact" ) }
               className={ appointmentFormStyles.input }
-              defaultValue="Email"
             >
               <option value="Email">Email</option>
               <option value="Phone">Phone</option>
@@ -249,7 +275,6 @@ function AppointmentForm() {
             <select
               { ...register( "returningPatient" ) }
               className={ appointmentFormStyles.input }
-              defaultValue="false"
             >
               <option value="true">Yes</option>
               <option value="false">No</option>
@@ -272,6 +297,7 @@ function AppointmentForm() {
           </p>
         ) }
         <div className={ appointmentFormStyles.groupDiv }>
+
           {/* Date Picker */ }
           <div className={ appointmentFormStyles.fieldDiv }>
             <label className={ appointmentFormStyles.label }>
@@ -311,7 +337,6 @@ function AppointmentForm() {
             <select
               { ...register( "dateFlexibility" ) }
               className={ appointmentFormStyles.input }
-              defaultValue="true"
             >
               <option value="true">Flexible</option>
               <option value="false">Not Flexible</option>
@@ -327,7 +352,6 @@ function AppointmentForm() {
               { ...register( "timeOfDay" ) }
               className={ appointmentFormStyles.input }
               onChange={ ( e ) => setSelectedTimeOfDay( e.target.value ) }
-              defaultValue="Anytime"
             >
               <option value="Morning">Morning</option>
               <option value="Lunch">Lunch Hour - Midday</option>
@@ -360,7 +384,7 @@ function AppointmentForm() {
                     timeIntervals={ 30 }
                     timeCaption="Time"
                     dateFormat="h:mm aa"
-                    filterTime={ getTimeFilter( selectedDate ) }
+                    filterTime={ getTimeFilter }
                     className={ appointmentFormStyles.input }
                     placeholderText="Select a time"
                   />

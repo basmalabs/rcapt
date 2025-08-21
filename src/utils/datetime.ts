@@ -90,16 +90,6 @@ export const dateInCompanyTZ = ( date: Date ): Date => {
   return new Date( parts[ 2 ], parts[ 0 ] - 1, parts[ 1 ] );
 };
 
-const getTimeInMinsForTZ = ( date: Date ) => {
-  const [ h, m ] = date.toLocaleString( "en-US", {
-    hour12: false,
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: TIME_ZONE
-  } ).split( ":" ).map( Number );
-  return h * 60 + m;
-};
-
 const addDays = ( base: Date, n: number ) => {
   const d = new Date( base );
   d.setDate( d.getDate() + n );

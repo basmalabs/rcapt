@@ -21,6 +21,7 @@
     "paths": {
       "@/components/*": ["./src/components/*"],
       "@/hooks/*": ["./src/hooks/*"],
+      "@/models/*": ["./src/models/*"],
       "@/mytypes/*": ["./src/mytypes/*"],
       "@/server/*": ["./src/server/*"],
       "@/store/*": ["./src/store/*"],
