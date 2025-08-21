@@ -4,7 +4,7 @@ export const headerStyles = {
   header: clsx(
     "flex flex-col md:flex-row",
     "items-center justify-evenly",
-    "fixed top-0 left-0 right-0 z-0",
+    "fixed top-0 left-0 right-0 z-500",
     "transition-all duration-500"
   ),
   headerNotAtTop: clsx(
