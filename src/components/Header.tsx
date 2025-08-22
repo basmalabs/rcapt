@@ -1,12 +1,34 @@
 "use client"
 
-import NavBar from '@/components/header/NavBar';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { HEADER_LOGO_SRC } from '@/utils/constants';
-import { headerStyles } from '@/styles/header';
 import { useUIStore } from '@/store/useUIStore';
+import NavBar from '@/components/header/NavBar';
+
+const headerStyles = {
+  header: clsx(
+    "flex flex-col md:flex-row",
+    "items-center justify-evenly",
+    "fixed top-0 left-0 right-0 z-500",
+    "transition-all duration-500"
+  ),
+  headerNotAtTop: clsx(
+    "px-2 py-2 md:px-4 md:py-4",
+    "backdrop-blur-md bg-green-300/70 text-gray-900",
+    "dark:bg-green-950/70 dark:text-white",
+    "shadow-sm shadow-green-100 dark:shadow-green-900",
+  ),
+  headerAtTop: clsx(
+    "px-2 py-2 md:px-4 md:py-4 bg-none",
+    "text-gray-900 dark:text-white",
+  ),
+  div: clsx( "flex items-center" ),
+  divRemoved: clsx( "hidden" ),
+  logoImage: clsx( "hover:scale-105 transition-transform duration-200" ),
+};
 
 function Header() {
   const { isMobile, isScrolled } = useUIStore();

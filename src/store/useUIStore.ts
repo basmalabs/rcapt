@@ -1,7 +1,11 @@
 "use client"
 
 import { create } from "zustand";
-import type { UIState } from "@/mytypes/store";
+
+export type UIState = {
+  isMobile: boolean;
+  isScrolled: boolean;
+}
 
 export const useUIStore = create<UIState>( () => ( {
   isMobile: false,

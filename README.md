@@ -24,4 +24,4 @@ This is a professional healthcare facility website designed to provide patients 
 
 ## Developer
 
-This project was developed by [Basma Labs](https://github.com/basmalabs) - a software development company specializing in developing modern web application solutions to meet business needs.
+This project was developed by [Basma Labs](https://www.basmalabs.com) - a software development company specializing in developing modern web application solutions to meet business needs.

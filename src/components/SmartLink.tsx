@@ -1,6 +1,11 @@
-import Link from 'next/link';
+import Link, { type LinkProps } from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { SmartLinkProps } from '@/mytypes/compProps';
+
+export type SmartLinkProps = LinkProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    children: React.ReactNode;
+    href: string;
+  };
 
 export default function SmartLink( { children, href, ...props }: SmartLinkProps ) {
   const pathname = usePathname();

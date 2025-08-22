@@ -1,6 +1,6 @@
 import mongoose, { Schema, Model } from "mongoose";
 
-import { AppointmentType } from "@/mytypes/server";
+import { AppointmentType } from "@/server/utils/types";
 
 const AppointmentSchema = new Schema<AppointmentType>(
   {

@@ -1,9 +1,23 @@
 import Image from 'next/image';
 import { Star } from 'lucide-react';
+import clsx from 'clsx';
 
-import { googleReviews } from "@/mytypes/server";
+import { googleReviews } from "@/server/utils/types";
 import { timeAgo } from "@/utils/datetime";
-import { readMoreModalStyles } from "@/styles/reviews";
+
+
+export const readMoreModalStyles = {
+  container: "p-4",
+  title: "text-xl md:text-2xl lg:text-4xl",
+  starsDiv: "flex items-center",
+  ratingStar: ( isFilled: boolean ) => clsx( "text-yellow-500", isFilled ? "opacity-100" : "opacity-50" ),
+  review: clsx(
+    "text-base md:text-lg lg:text-xl",
+    "m-4 md:mx-6 lg:mx-10 text-justify"
+  ),
+  date: "text-sm md:text-base lg:text-lg",
+  dataSource: "text-xs text-gray-900/70 dark:text-white/70",
+};
 
 function ReviewReadMore({reviewData}: {reviewData: googleReviews}) {
   return (

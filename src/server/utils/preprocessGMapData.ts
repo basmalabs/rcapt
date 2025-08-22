@@ -1,7 +1,7 @@
 import type {
   rawGoogleReview, googleReviews,
   rawOpeningHours, openingHour
-} from "@/mytypes/server";
+} from "@/server/utils/types";
 
 export function preprocessOpeningHours( openingHours: rawOpeningHours ): openingHour[] {
   return openingHours.weekdayDescriptions.map( ( desc ) => {

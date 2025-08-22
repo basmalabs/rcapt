@@ -2,7 +2,7 @@ import redis, {
   GMAP_CACHE_KEY, GMAP_REVALIDATE_DUR 
 } from "@/server/lib/redis";
 import { sampleGMapData } from "@/server/utils/constants";
-import { cleanedGMapData } from "@/mytypes/server";
+import { cleanedGMapData } from "@/server/utils/types";
 import {
   preprocessReviewData,
   preprocessOpeningHours 

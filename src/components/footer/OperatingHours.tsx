@@ -4,12 +4,49 @@ import clsx from "clsx";
 import { useState, useEffect } from "react";
 import { useUIStore } from "@/store/useUIStore";
 
-import type { openingHour } from "@/mytypes/server";
+import type { openingHour } from "@/server/utils/types";
 import { getDay, getTimeInMins, timeToMinutes } from "@/utils/datetime";
-import {
-  textStyles, tableStyles,
-  currentStatusStyles, containerStyles
-} from "@/styles/footer";
+import { textStyles, containerStyles } from "./styles";
+
+const statusStyles = {
+  wrapper: ( isOpen: boolean ) => clsx(
+    "flex flex-row item-start p-3",
+    isOpen
+      ? "bg-green-400 dark:bg-green-600"
+      : "bg-red-400 dark:bg-red-700",
+  ),
+  label: clsx( "basis-sm text-sm font-normal" ),
+  value: clsx( "basis-xl justify-self-center text-3xl text-center uppercase font-bold" ),
+}
+
+const tableStyles = {
+  wrapper: clsx(
+    "overflow-x-auto", // prevent overflow issues on mobile
+    "mt-1"
+  ),
+  table: clsx(
+    "table-auto lg:table-fixed border-collapse w-full text-sm",
+  ),
+  tr_mobile: ( isOpen: boolean ) => clsx(
+    "border-b border-green-200 dark:border-green-700",
+    isOpen && "bg-green-400 dark:bg-green-600"
+  ),
+  td_mobile: clsx(
+    "border-b-2 border-green-500 dark:border-green-700",
+    "px-2 py-2"
+  ),
+  tr_web: clsx(
+    "border-green-200 dark:border-green-700",
+  ),
+  td_web: ( isOpen: boolean ) => clsx(
+    "border-x-2 border-green-500 dark:border-green-700",
+    "text-center",
+    "px-2 py-1",
+    isOpen && "bg-green-400 dark:bg-green-600",
+  ),
+  td_web_h: clsx( "font-semibold text-base lg:text-lg" ),
+  td_web_info: clsx( "text-sm lg:text-base" )
+};
 
 
 function OperatingHours( ) {
@@ -65,9 +102,9 @@ function OperatingHours( ) {
     <section className={ clsx(containerStyles.container) }>
       <h2 className={ textStyles.h1 }>Hours of Operation</h2>
 
-      <div className={ currentStatusStyles.wrapper( isCurrentlyOpen ) }>
-        <div className={ currentStatusStyles.label }>Current Status</div>
-        <div className={ currentStatusStyles.value }>
+      <div className={ statusStyles.wrapper( isCurrentlyOpen ) }>
+        <div className={ statusStyles.label }>Current Status</div>
+        <div className={ statusStyles.value }>
           { isCurrentlyOpen ? "Open" : "Closed" }
         </div>
       </div>
@@ -94,9 +131,9 @@ function OperatingHours( ) {
     <section className={ clsx(containerStyles.container) }>
       <h2 className={ textStyles.h1 }>Hours of Operation</h2>
 
-      <div className={ currentStatusStyles.wrapper( isCurrentlyOpen ) }>
-        <div className={ currentStatusStyles.label }>Current Status</div>
-        <div className={ currentStatusStyles.value }>
+      <div className={ statusStyles.wrapper( isCurrentlyOpen ) }>
+        <div className={ statusStyles.label }>Current Status</div>
+        <div className={ statusStyles.value }>
           { isCurrentlyOpen ? "Open" : "Closed" }
         </div>
       </div>

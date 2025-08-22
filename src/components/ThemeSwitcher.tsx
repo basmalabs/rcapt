@@ -13,7 +13,7 @@ const styles = {
     "bg-green-700 dark:bg-green-400",
     "hover:bg-green-600 dark:hover:bg-green-300",
     "transition-colors",
-    "z-50"
+    "z-600"
   ),
   icon: clsx(
     "text-white w-8 h-8"

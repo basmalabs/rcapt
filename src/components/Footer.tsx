@@ -4,7 +4,7 @@ import Contact from "@/components/footer/Contact";
 import OperatingHours from "@/components/footer/OperatingHours";
 import BottomLinks from "@/components/footer/BottomLinks";
 import TextureDiv from "@/components/TextureDiv";
-import { containerStyles } from "@/styles/footer";
+import { containerStyles } from "./footer/styles";
 
 
 function Footer() {

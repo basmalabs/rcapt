@@ -2,8 +2,38 @@
 
 import { useState, useEffect } from "react";
 import clsx from "clsx";
-import { modalStyles } from "@/styles/components";
-import type { ModalProps } from "@/mytypes/compProps";
+
+const modalStyles = {
+  bg: clsx(
+    "fixed inset-0 z-550",
+    "flex items-center justify-center",
+    "bg-black/20 dark:bg-white/20 px-4",
+    "opacity-0 transition-opacity",
+    "delay-150 duration-500 ease-in",
+  ),
+  bg_transition: (isOpen: boolean) =>
+    clsx(
+      isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+    ),
+  container: clsx(
+    "relative",
+    "p-4 md:p-6 rounded-lg shadow-lg w-96",
+    "bg-white dark:bg-gray-800",
+    "w-full max-w-[85vw] lg:max-w-[70vw]",
+  ),
+  buttonDiv: clsx( "flex justify-end bg-inherit z-10" ),
+  childrenDiv: clsx(
+    "overflow-y-auto scrollbar-hidden",
+    "max-h-[75vh] md:max-h-[85vh]",
+  ),
+  closeButton: clsx( "absolute top-3 right-3 px-2 text-6xl" ),
+};
+
+type ModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+};
 
 export default function Modal( { isOpen, onClose, children }: ModalProps ) {
   const [ show, setShow ] = useState( isOpen ); // controls DOM presence
