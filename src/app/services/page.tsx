@@ -25,7 +25,7 @@ const styles = {
   ),
 };
 
-export function Services() {
+function Services() {
   return (
     <section className={styles.section}>
       <h2 className={styles.heading}>
