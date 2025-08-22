@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import clsx from "clsx";
 
-import HeroSection from "@/app/about/HeroSection";
+import HeroSection from "@/components/HeroSection";
 import SectionTitle from "@/app/about/SectionTitle";
 import ValueCard from "@/app/about/ValueCard";
 import WhyChooseUsCard from "@/app/about/WhyChooseUsCard";
@@ -9,16 +9,36 @@ import { TITLE_NAME } from "@/utils/constants";
 import { ourValues, ourFeatures } from "@/app/about/pageTexts";
 
 const styles = {
-  mainContainer: clsx( "space-y-20" ),
-  mv_section: clsx( "container mx-auto px-4 space-y-8" ),
+  mainContainer: clsx( 
+    "space-y-10",
+    "pt-[140px] md:pt-[100px] md:pb-6 lg:pb-8",
+  ),
+  heading: clsx(
+    "pt-10 md:pt-14 pb-2 md:pb-2",
+    "text-5xl md:text-6xl font-extrabold text-center"
+  ),
+  subHeading: clsx(
+    "pb-4",
+    "text-lg md:text-xl font-normal text-center"
+  ),
+  mv_section: clsx( 
+    "container mx-auto px-4 space-y-8",
+    "max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]",
+  ),
   mv_p: clsx( "text-gray-700 dark:text-gray-300" ),
   val_section: clsx( "bg-green-100 dark:bg-green-900 py-16" ),
-  val_mainContainer: clsx( "container mx-auto px-4" ),
+  val_mainContainer: clsx( 
+    "container mx-auto px-4",
+    "max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]",
+  ),
   val_cardContainer: clsx(
     "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
     "gap-8 mt-8"
   ),
-  wcu_mainContainer: clsx( "container mx-auto px-4 pb-12" ),
+  wcu_mainContainer: clsx( 
+    "container mx-auto px-4 pb-12",
+    "max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]",
+  ),
   wcu_cardContainer: clsx(
     "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
     "gap-8 mt-12"
@@ -29,11 +49,19 @@ function About() {
   return (
     <div className={styles.mainContainer}>
       {/* Hero Section */ }
-      <HeroSection
+      {/* <HeroSection
         title="RCA Physical Therapy"
         subtitle="Providing exceptional care since 2003"
         imageUrl="/exercise-facility.jpg"
-      />
+      /> */}
+      <div>
+        <h2 className={styles.heading}>
+          RCA Physical Therapy
+        </h2>
+        <p className={styles.subHeading}>
+          Providing exceptional care since 2003
+        </p>
+      </div>
 
       {/* Mission & Vision */ }
       <section className={styles.mv_section}>

@@ -17,7 +17,8 @@ import { TIME_ZONE } from "@/utils/constants";
 
 const styles = {
   container: clsx(
-    "max-w-2xl mx-auto p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-lg"
+    "mx-auto p-8 bg-white dark:bg-gray-900 rounded-2xl",
+    "shadow-lg shadow-gray-300 dark:shadow-gray-800"
   ),
   headerDiv: clsx( "mb-8 text-center" ),
   groupDiv: clsx(
@@ -30,18 +31,19 @@ const styles = {
   ),
   input: clsx(
     "w-full p-2",
-    "border border-green-400 rounded-lg",
+    "border border-green-400/30 dark:border-green-400/10 rounded-lg",
     "text-gray-900 dark:text-gray-100 dark:bg-gray-800",
     "focus:ring-2 focus:ring-green-400 focus:outline-none"
   ),
   warning: clsx( "text-yellow-800 dark:text-yellow-200 text-sm mb-4" ),
   error: clsx( "text-red-600 dark:text-red-400 text-sm mt-1" ),
   button: clsx(
-    "w-full mt-4 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition"
+    "w-full py-2 px-4 mt-4 text-white font-semibold",
+    "bg-green-600 rounded-lg transition",
   ),
   mainHeading: clsx(
     "text-2xl md:text-4xl font-bold",
-    "text-green-600 dark:text-green-400"
+    "text-green-600 dark:text-green-400",
   ),
   mainSubHeading: clsx( "text-base md:text-lg" ),
   divHeading: clsx(

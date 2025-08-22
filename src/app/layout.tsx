@@ -26,6 +26,6 @@ export const metadata: Metadata = {
   title: `${TITLE_NAME} | Your Partner for Physical Therapy`,
   description: `${TITLE_NAME} | Your Partner for Physical Therapy`,
   icons: {
-    icon: "/rcapt.ico"
+    icon: "https://res.cloudinary.com/farooqdotdev/image/upload/v1755189113/rcapt/logo.png"
   },
 };

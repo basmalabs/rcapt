@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 const modalStyles = {
   bg: clsx(
-    "fixed inset-0 z-50",
+    "fixed inset-0 z-550",
     "flex items-center justify-center",
     "bg-black/20 dark:bg-white/20 px-4",
     "opacity-0 transition-opacity",
