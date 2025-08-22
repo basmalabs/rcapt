@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import clsx from "clsx";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -14,7 +15,7 @@ type MessageFormValues = {
 const styles = {
   container: clsx(
     "p-8 bg-white dark:bg-gray-900 rounded-2xl",
-    "shadow-lg shadow-gray-300 dark:shadow-gray-800"
+    "shadow-lg shadow-gray-300 dark:shadow-gray-800",
   ),
   form: clsx("w-full space-y-4"),
   input: clsx(
@@ -41,23 +42,50 @@ const styles = {
 };
 
 const messageSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  message: yup.string().required("Message is required"),
+  name: yup.string().required("Required"),
+  email: yup.string().required("Required").email("Invalid email"),
+  message: yup.string().required("Required"),
 });
 
 function MessageForm() {
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<MessageFormValues>();
+  } = useForm<MessageFormValues>({
+    resolver: yupResolver(messageSchema),
+  });
 
   const onSubmit = async (data: MessageFormValues) => {
-    console.log("Message form submitted:", data);
-    // TODO: integrate with EmailJS / API route
-    reset();
+    try {
+
+      const response = await fetch( "/api/contactMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify( data ),
+      } );
+
+      if ( !response.ok ) {
+        const errorText = await response.text();
+        throw new Error( errorText || "Failed to submit" );
+      }
+
+      setSubmitMessage( "Message sent successfully!" );
+      reset();
+
+    } catch ( error: unknown ) {
+      
+      console.error( "Error saving message:", error );
+      setSubmitMessage( "Failed to submit message. Please try again." );
+    
+    } finally {
+      
+      // Hide the message after 3 seconds
+      setTimeout( () => setSubmitMessage( null ), 5000 );
+    }
   };
 
   return (
@@ -74,7 +102,7 @@ function MessageForm() {
         <input
           type="text"
           placeholder="Your Name"
-          {...register("name", { required: "Name is required" })}
+          {...register("name")}
           className={styles.input}
         />
         {errors.name && (
@@ -86,13 +114,7 @@ function MessageForm() {
         <input
           type="email"
           placeholder="Your Email"
-          {...register("email", {
-            required: "Email is required",
-            pattern: {
-              value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-              message: "Invalid email address",
-            },
-          })}
+          {...register("email")}
           className={styles.input}
         />
         {errors.email && (
@@ -103,7 +125,7 @@ function MessageForm() {
 
         <textarea
           placeholder="Your Message"
-          {...register("message", { required: "Message is required" })}
+          {...register("message")}
           className={styles.textarea}
         />
         {errors.message && (
@@ -112,6 +134,17 @@ function MessageForm() {
           </p>
         )}
 
+        {/* Submit */ }
+        { submitMessage && (
+          <p
+            className={ clsx(
+              "mt-2 text-center",
+              submitMessage.includes( "success" ) ? "text-green-600" : "text-red-500"
+            ) }
+          >
+            { submitMessage }
+          </p>
+        ) }
         <button type="submit" disabled={isSubmitting} className={styles.button}>
           {isSubmitting ? "Sending..." : "Send Message"}
         </button>

@@ -50,3 +50,9 @@ export interface AppointmentType extends Document {
   notes?: string | null;
   createdAt: Date;
 }
+
+export interface ContactMessageType extends Document {
+  name: string;
+  email: string;
+  message: string;
+}
