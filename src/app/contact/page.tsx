@@ -12,6 +12,7 @@ const styles = {
   mainContainer: clsx(
     "container px-4",
     "max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]",
+    "place-self-center"
   ),
   heading: clsx(
     "pt-10 md:pt-14 pb-2 md:pb-2",

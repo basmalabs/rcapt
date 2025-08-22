@@ -1,11 +1,6 @@
 "use client"
 
-import { useState } from "react";
 import clsx from "clsx";
-
-import Button from "@/components/Button";
-import Modal from "@/components/Modal";
-import AppointmentForm from "@/components/AppointmentForm";
 
 const styles = {
   section: clsx(
@@ -27,8 +22,6 @@ const styles = {
 };
 
 export default function ReviewHeader() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   return (
     <>
       <section className={ styles.section }>
@@ -40,16 +33,7 @@ export default function ReviewHeader() {
           </span>
           { " " } from people who have experienced our services.
         </p>
-        {/* <Button
-          className={ styles.button }
-          onClick={ () => { setIsModalOpen( true ); } }
-        >
-          Book An Appointment
-        </Button> */}
       </section>
-      {/* <Modal isOpen={ isModalOpen } onClose={ () => setIsModalOpen(false) }>
-        <AppointmentForm />
-      </Modal> */}
     </>
   )
 }

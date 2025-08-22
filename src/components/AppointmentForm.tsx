@@ -94,7 +94,7 @@ function AppointmentForm() {
   const [ selectedTimeOfDay, setSelectedTimeOfDay ] = useState<string>( "Anytime" );
   const [ openingHours, setOpeningHours ] = useState<openingHour[]>( [] );
 
-  const [ isSubmitting, setIsSubmitting ] = useState( false );
+  // const [ isSubmitting, setIsSubmitting ] = useState( false );
   const [ submitMessage, setSubmitMessage ] = useState<string | null>( null );
 
   // Checking time zone mismatch
@@ -143,7 +143,7 @@ function AppointmentForm() {
     handleSubmit,
     control,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm( {
     resolver: yupResolver( appointmentSchema ),
     defaultValues: {
@@ -156,7 +156,6 @@ function AppointmentForm() {
   } );
 
   const onSubmit = async ( data: AppointmentFormData ) => {
-    setIsSubmitting( true ); // disable button
 
     try {
       const response = await fetch( "/api/appointments", {
@@ -176,8 +175,7 @@ function AppointmentForm() {
       console.error( "Error saving appointment:", error );
       setSubmitMessage( "Failed to submit appointment. Please try again." );
     } finally {
-      setIsSubmitting( false );
-
+      
       // Hide the message after 3 seconds
       setTimeout( () => setSubmitMessage( null ), 5000 );
     }

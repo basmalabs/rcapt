@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import clsx from "clsx";
 
-import HeroSection from "@/components/HeroSection";
 import SectionTitle from "@/app/about/SectionTitle";
 import ValueCard from "@/app/about/ValueCard";
 import WhyChooseUsCard from "@/app/about/WhyChooseUsCard";
@@ -48,12 +47,7 @@ const styles = {
 function About() {
   return (
     <div className={styles.mainContainer}>
-      {/* Hero Section */ }
-      {/* <HeroSection
-        title="RCA Physical Therapy"
-        subtitle="Providing exceptional care since 2003"
-        imageUrl="/exercise-facility.jpg"
-      /> */}
+      
       <div>
         <h2 className={styles.heading}>
           RCA Physical Therapy
